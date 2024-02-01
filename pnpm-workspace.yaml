@@ -1,0 +1,8 @@
+packages:
+  - apps/web
+  - apps/server
+  - packages/config/eslint
+  - packages/config/tsconfig
+  - packages/config/prettier
+  - packages/env
+  - packages/api

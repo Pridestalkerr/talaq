@@ -1,0 +1,5 @@
+{
+  "watch": ["../../packages", "src"],
+  "ext": "ts,json",
+  "exec": "node --loader esbuild-register/loader -r esbuild-register ./src/index.ts"
+}

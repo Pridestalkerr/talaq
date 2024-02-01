@@ -1,0 +1,35 @@
+{
+  "name": "@acme/env",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf .turbo && rm -rf node_modules",
+    "lint": "eslint . --ext .ts,.tsx,.mjs",
+    "lint:fix": "pnpm lint --fix",
+    "format": "prettier --write '**/*.{cjs,mjs,ts,tsx,md,json}' --ignore-unknown --no-error-on-unmatched-pattern",
+    "format:check": "prettier --check '**/*.{cjs,mjs,ts,tsx,md,json}' --ignore-unknown --no-error-on-unmatched-pattern"
+  },
+  "dependencies": {
+    "@t3-oss/env-core": "^0.6.1",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@acme/eslint-config": "^0.0.0",
+    "@acme/prettier-config": "^0.0.0",
+    "@acme/tsconfig": "^0.0.0",
+    "typescript": "^5.1.6"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@acme/eslint-config/base"
+    ]
+  },
+  "prettier": "@acme/prettier-config/base"
+}
