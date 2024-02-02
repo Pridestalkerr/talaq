@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+ojd-daps-skills = {ref = "dev", git = "git+https://github.com/nestauk/ojd_daps_skills.git"}
+fastapi = {extras = ["all"], version = "*"}
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
+
+[scripts]
+start = "uvicorn src.main:app --reload"
+dev = "pipenv run start"
+format = "black src"
