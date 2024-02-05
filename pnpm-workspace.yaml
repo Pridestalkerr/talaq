@@ -6,3 +6,5 @@ packages:
   - packages/config/prettier
   - packages/env
   - packages/api
+  - packages/db
+  - packages/auth

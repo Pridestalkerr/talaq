@@ -1,0 +1,1 @@
+ALTER TABLE "job_listing_meta" ALTER COLUMN "job_listing_id" SET NOT NULL;

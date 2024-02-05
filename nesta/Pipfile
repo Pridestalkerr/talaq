@@ -13,6 +13,6 @@ fastapi = {extras = ["all"], version = "*"}
 python_version = "3.10"
 
 [scripts]
-start = "uvicorn src.main:app --reload"
+start = "uvicorn src.main:app --port 6376 --reload"
 dev = "pipenv run start"
 format = "black src"

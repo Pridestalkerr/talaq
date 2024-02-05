@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  postgresql:
+    container_name: srmap-postgresql
+    image: bitnami/postgresql:latest
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pgdata:/bitnami/postgresql/data
+    environment:
+      - POSTGRESQL_USERNAME=${POSTGRESQL_USERNAME}
+      - POSTGRESQL_PASSWORD=${POSTGRESQL_PASSWORD}
+      - POSTGRESQL_DATABASE=${POSTGRESQL_DATABASE}

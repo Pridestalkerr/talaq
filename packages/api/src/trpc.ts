@@ -5,13 +5,14 @@ import type { CreateExpressContextOptions } from "@trpc/server/adapters/express"
 import { env } from "@acme/env";
 import type { response, request } from "express";
 import type { OpenApiMeta } from "trpc-openapi";
+import { auth } from "@acme/auth";
 
-interface Session {
-  token: string;
-}
+type Session = Awaited<ReturnType<typeof auth.validateSession>>;
 
 export interface Context {
-  session: Session;
+  session: Session | null;
+  isAdmin: boolean;
+  token: string | null;
   req: typeof request;
   res: typeof response;
 }
@@ -19,15 +20,37 @@ export interface Context {
 export const createTRPCContext = async ({
   req,
   res,
-  // eslint-disable-next-line @typescript-eslint/require-await
 }: CreateExpressContextOptions): Promise<Context> => {
+  // auth bypass for dev
+  if (env.NODE_ENV === "development" && req.headers["override-auth"]) {
+    const session = {
+      userId: req.headers["override-auth"] as string,
+    } as Context["session"];
+    return {
+      session,
+      isAdmin: true,
+      token: null,
+      req,
+      res,
+    };
+  }
+
   const cookies = req.cookies as Record<string, string>;
   const token = cookies.token;
+  let session: Context["session"] = null;
+
+  if (token) {
+    try {
+      session = await auth.validateSession(token);
+    } catch (err) {
+      console.error("Error validating session", err);
+    }
+  }
 
   return {
-    session: {
-      token: token ?? "",
-    },
+    session,
+    token: token ?? null,
+    isAdmin: session?.user.isAdmin ?? false,
     req,
     res,
   };

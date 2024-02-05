@@ -13,11 +13,15 @@
     "format:check": "prettier --check '**/*.{cjs,mjs,ts,tsx,md,json}' --ignore-unknown --no-error-on-unmatched-pattern"
   },
   "dependencies": {
+    "@acme/auth": "^1.0.0",
+    "@acme/db": "^0.0.0",
     "@acme/env": "^0.0.0",
     "@trpc/client": "^10.45.0",
     "@trpc/server": "^10.45.0",
+    "drizzle-orm": "^0.29.3",
     "superjson": "2.2.1",
     "trpc-openapi": "^1.2.0",
+    "xlsx": "^0.18.5",
     "zod": "^3.21.4"
   },
   "devDependencies": {

@@ -1,0 +1,1906 @@
+{
+  "categories": [
+    {
+      "id": 6,
+      "name": "Customer and Client Support"
+    },
+    {
+      "id": 20,
+      "name": "Maintenance, Repair, and Facility Services"
+    },
+    {
+      "id": 3,
+      "name": "Analysis"
+    },
+    {
+      "id": 9,
+      "name": "Education and Training"
+    },
+    {
+      "id": 29,
+      "name": "Sales"
+    },
+    {
+      "id": 16,
+      "name": "Human Resources"
+    },
+    {
+      "id": 7,
+      "name": "Design"
+    },
+    {
+      "id": 26,
+      "name": "Physical and Inherent Abilities"
+    },
+    {
+      "id": 31,
+      "name": "Social and Human Services"
+    },
+    {
+      "id": 5,
+      "name": "Business"
+    },
+    {
+      "id": 8,
+      "name": "Economics, Policy, and Social Studies"
+    },
+    {
+      "id": 1,
+      "name": "Administration"
+    },
+    {
+      "id": 15,
+      "name": "Hospitality and Food Services"
+    },
+    {
+      "id": 23,
+      "name": "Media and Communications"
+    },
+    {
+      "id": 2,
+      "name": "Agriculture, Horticulture, and Landscaping"
+    },
+    {
+      "id": 32,
+      "name": "Transportation, Supply Chain, and Logistics"
+    },
+    {
+      "id": 10,
+      "name": "Energy and Utilities"
+    },
+    {
+      "id": 17,
+      "name": "Information Technology"
+    },
+    {
+      "id": 13,
+      "name": "Finance"
+    },
+    {
+      "id": 22,
+      "name": "Marketing and Public Relations"
+    },
+    {
+      "id": 24,
+      "name": "Performing Arts, Sports, and Recreation"
+    },
+    {
+      "id": 25,
+      "name": "Personal Care and Services"
+    },
+    {
+      "id": 0,
+      "name": "NULL"
+    },
+    {
+      "id": 12,
+      "name": "Environment"
+    },
+    {
+      "id": 21,
+      "name": "Manufacturing and Production"
+    },
+    {
+      "id": 14,
+      "name": "Health Care"
+    },
+    {
+      "id": 27,
+      "name": "Property and Real Estate"
+    },
+    {
+      "id": 4,
+      "name": "Architecture and Construction"
+    },
+    {
+      "id": 19,
+      "name": "Law, Regulation, and Compliance"
+    },
+    {
+      "id": 28,
+      "name": "Public Safety and National Security"
+    },
+    {
+      "id": 11,
+      "name": "Engineering"
+    },
+    {
+      "id": 30,
+      "name": "Science and Research"
+    }
+  ],
+  "subcategories": [
+    {
+      "id": 526,
+      "name": "Food Science and Processing"
+    },
+    {
+      "id": 620,
+      "name": "Genetics"
+    },
+    {
+      "id": 173,
+      "name": "Digital Design"
+    },
+    {
+      "id": 111,
+      "name": "Agriculture and Crop Farming"
+    },
+    {
+      "id": 535,
+      "name": "Micro Manufacturing"
+    },
+    {
+      "id": 301,
+      "name": "Oral and Dental Care"
+    },
+    {
+      "id": 242,
+      "name": "Signal Processing"
+    },
+    {
+      "id": 445,
+      "name": "Microsoft Windows"
+    },
+    {
+      "id": 285,
+      "name": "Specialized Accounting"
+    },
+    {
+      "id": 247,
+      "name": "Conservation"
+    },
+    {
+      "id": 382,
+      "name": "Cloud Solutions"
+    },
+    {
+      "id": 628,
+      "name": "Counseling Services"
+    },
+    {
+      "id": 129,
+      "name": "Statistics"
+    },
+    {
+      "id": 604,
+      "name": "Prospecting and Qualification"
+    },
+    {
+      "id": 372,
+      "name": "Artificial Intelligence and Machine Learning (AI/ML)"
+    },
+    {
+      "id": 577,
+      "name": "Initiative and Leadership"
+    },
+    {
+      "id": 376,
+      "name": "Basic Technical Knowledge"
+    },
+    {
+      "id": 559,
+      "name": "Audio Production and Technology"
+    },
+    {
+      "id": 555,
+      "name": "Promotions and Campaigns"
+    },
+    {
+      "id": 346,
+      "name": "Rehabilitation"
+    },
+    {
+      "id": 257,
+      "name": "Accounts Payable and Receivable"
+    },
+    {
+      "id": 585,
+      "name": "Disaster Management"
+    },
+    {
+      "id": 327,
+      "name": "Mental Health Diseases and Disorders"
+    },
+    {
+      "id": 637,
+      "name": "Inventory and Warehousing"
+    },
+    {
+      "id": 630,
+      "name": "Religious Studies and Services"
+    },
+    {
+      "id": 643,
+      "name": "Supplier Management"
+    },
+    {
+      "id": 337,
+      "name": "Pathology"
+    },
+    {
+      "id": 258,
+      "name": "Auditing"
+    },
+    {
+      "id": 303,
+      "name": "Ear, Nose, and Throat"
+    },
+    {
+      "id": 297,
+      "name": "Cardiology"
+    },
+    {
+      "id": 556,
+      "name": "Public Relations"
+    },
+    {
+      "id": 244,
+      "name": "Surveying and Cartography"
+    },
+    {
+      "id": 264,
+      "name": "Cost Accounting"
+    },
+    {
+      "id": 656,
+      "name": "Groundskeeping and Yard Care"
+    },
+    {
+      "id": 354,
+      "name": "Travel and Tourism"
+    },
+    {
+      "id": 379,
+      "name": "C and C++"
+    },
+    {
+      "id": 490,
+      "name": "Web Content"
+    },
+    {
+      "id": 533,
+      "name": "Manufacturing Standards"
+    },
+    {
+      "id": 166,
+      "name": "Customer Service"
+    },
+    {
+      "id": 504,
+      "name": "Law Enforcement and Criminal Justice"
+    },
+    {
+      "id": 590,
+      "name": "Military Operations"
+    },
+    {
+      "id": 150,
+      "name": "Business Continuity"
+    },
+    {
+      "id": 595,
+      "name": "Account Management"
+    },
+    {
+      "id": 186,
+      "name": "Education Administration"
+    },
+    {
+      "id": 532,
+      "name": "Manufacturing Processes"
+    },
+    {
+      "id": 110,
+      "name": "Cannabis"
+    },
+    {
+      "id": 352,
+      "name": "Hotels and Accommodations"
+    },
+    {
+      "id": 214,
+      "name": "Automotive Technologies"
+    },
+    {
+      "id": 627,
+      "name": "Science Software"
+    },
+    {
+      "id": 536,
+      "name": "Plant Operations and Management"
+    },
+    {
+      "id": 453,
+      "name": "Networking Software"
+    },
+    {
+      "id": 121,
+      "name": "Data Visualization"
+    },
+    {
+      "id": 580,
+      "name": "Critical Thinking and Problem Solving"
+    },
+    {
+      "id": 546,
+      "name": "Customer Relationship Management (CRM)"
+    },
+    {
+      "id": 144,
+      "name": "Concrete and Masonry"
+    },
+    {
+      "id": 329,
+      "name": "Mobility Assistance"
+    },
+    {
+      "id": 452,
+      "name": "Networking Hardware"
+    },
+    {
+      "id": 275,
+      "name": "Financial Reporting"
+    },
+    {
+      "id": 122,
+      "name": "Image Analysis"
+    },
+    {
+      "id": 547,
+      "name": "Fundraising and Crowdsourcing"
+    },
+    {
+      "id": 172,
+      "name": "Creative Design"
+    },
+    {
+      "id": 102,
+      "name": "Dictation"
+    },
+    {
+      "id": 340,
+      "name": "Pediatrics"
+    },
+    {
+      "id": 653,
+      "name": "Funeral and Mortuary Services"
+    },
+    {
+      "id": 365,
+      "name": "Agile Software Development"
+    },
+    {
+      "id": 196,
+      "name": "Electrical Power"
+    },
+    {
+      "id": 525,
+      "name": "Electronics Manufacturing"
+    },
+    {
+      "id": 210,
+      "name": "Wind Energy"
+    },
+    {
+      "id": 436,
+      "name": "IT Management"
+    },
+    {
+      "id": 561,
+      "name": "Journalism"
+    },
+    {
+      "id": 293,
+      "name": "Animal Health and Veterinary Medicine"
+    },
+    {
+      "id": 589,
+      "name": "Intelligence Collection and Analysis"
+    },
+    {
+      "id": 531,
+      "name": "Manufacturing Design"
+    },
+    {
+      "id": 584,
+      "name": "Real Estate Sales"
+    },
+    {
+      "id": 530,
+      "name": "Machinery"
+    },
+    {
+      "id": 175,
+      "name": "Graphic and Visual Design Software"
+    },
+    {
+      "id": 235,
+      "name": "Mining Engineering"
+    },
+    {
+      "id": 514,
+      "name": "Cleaning and Janitorial Services"
+    },
+    {
+      "id": 646,
+      "name": "Transportation Security"
+    },
+    {
+      "id": 118,
+      "name": "Data Science"
+    },
+    {
+      "id": 135,
+      "name": "Construction Management"
+    },
+    {
+      "id": 274,
+      "name": "Financial Regulation"
+    },
+    {
+      "id": 609,
+      "name": "Solution Sales Engineering"
+    },
+    {
+      "id": 450,
+      "name": "Network Protocols"
+    },
+    {
+      "id": 168,
+      "name": "Insurance and Warranty Claims Processing"
+    },
+    {
+      "id": 320,
+      "name": "Medical Billing and Coding"
+    },
+    {
+      "id": 573,
+      "name": "Child Care"
+    },
+    {
+      "id": 395,
+      "name": "Data Management"
+    },
+    {
+      "id": 562,
+      "name": "Literature and Literary Studies"
+    },
+    {
+      "id": 518,
+      "name": "Hand Tools"
+    },
+    {
+      "id": 416,
+      "name": "Extraction, Transformation, and Loading (ETL)"
+    },
+    {
+      "id": 419,
+      "name": "Firmware"
+    },
+    {
+      "id": 233,
+      "name": "Materials Science and Engineering"
+    },
+    {
+      "id": 125,
+      "name": "Mathematics and Mathematical Modeling"
+    },
+    {
+      "id": 655,
+      "name": "General Finance"
+    },
+    {
+      "id": 199,
+      "name": "Natural Gas"
+    },
+    {
+      "id": 583,
+      "name": "Real Estate Development"
+    },
+    {
+      "id": 343,
+      "name": "Poison Control"
+    },
+    {
+      "id": 409,
+      "name": "Enterprise Application Management"
+    },
+    {
+      "id": 304,
+      "name": "Emergency and Intensive Care"
+    },
+    {
+      "id": 223,
+      "name": "Electronics Engineering"
+    },
+    {
+      "id": 566,
+      "name": "Streaming Media Systems"
+    },
+    {
+      "id": 599,
+      "name": "E-Commerce"
+    },
+    {
+      "id": 155,
+      "name": "Business Strategy"
+    },
+    {
+      "id": 232,
+      "name": "Marine and Naval Engineering"
+    },
+    {
+      "id": 169,
+      "name": "Payment Processing and Collection"
+    },
+    {
+      "id": 138,
+      "name": "Electrical Construction"
+    },
+    {
+      "id": 552,
+      "name": "Marketing Strategy and Techniques"
+    },
+    {
+      "id": 592,
+      "name": "Safety and Security"
+    },
+    {
+      "id": 263,
+      "name": "Commercial Lending"
+    },
+    {
+      "id": 515,
+      "name": "Equipment Repair and Maintenance"
+    },
+    {
+      "id": 334,
+      "name": "Obstetrics and Gynecology (OBGYN)"
+    },
+    {
+      "id": 629,
+      "name": "Government Assistance"
+    },
+    {
+      "id": 322,
+      "name": "Medical Equipment and Technology"
+    },
+    {
+      "id": 100,
+      "name": "NULL"
+    },
+    {
+      "id": 554,
+      "name": "Digital Marketing"
+    },
+    {
+      "id": 216,
+      "name": "Chemical and Biomedical Engineering"
+    },
+    {
+      "id": 312,
+      "name": "Geriatrics"
+    },
+    {
+      "id": 541,
+      "name": "Transportation Equipment Manufacturing"
+    },
+    {
+      "id": 207,
+      "name": "Solar Energy"
+    },
+    {
+      "id": 220,
+      "name": "Electrical and Computer Engineering"
+    },
+    {
+      "id": 234,
+      "name": "Mechanical Engineering"
+    },
+    {
+      "id": 152,
+      "name": "Business Management"
+    },
+    {
+      "id": 631,
+      "name": "Community and Social Work"
+    },
+    {
+      "id": 201,
+      "name": "Oil and Gas"
+    },
+    {
+      "id": 612,
+      "name": "Bioinformatics"
+    },
+    {
+      "id": 177,
+      "name": "Presentation Design"
+    },
+    {
+      "id": 170,
+      "name": "Animation and Game Design"
+    },
+    {
+      "id": 358,
+      "name": "Human Resources Management and Planning"
+    },
+    {
+      "id": 131,
+      "name": "Carpentry"
+    },
+    {
+      "id": 520,
+      "name": "Plumbing"
+    },
+    {
+      "id": 619,
+      "name": "Earth and Space Science"
+    },
+    {
+      "id": 278,
+      "name": "General Accounting"
+    },
+    {
+      "id": 524,
+      "name": "Computer-Aided Manufacturing"
+    },
+    {
+      "id": 517,
+      "name": "General Repairs and Maintenance"
+    },
+    {
+      "id": 341,
+      "name": "Pharmacy"
+    },
+    {
+      "id": 430,
+      "name": "Internet of Things (IoT)"
+    },
+    {
+      "id": 178,
+      "name": "User Interface and User Experience (UI/UX) Design"
+    },
+    {
+      "id": 323,
+      "name": "Medical Imaging"
+    },
+    {
+      "id": 386,
+      "name": "Computer Hardware"
+    },
+    {
+      "id": 446,
+      "name": "Middleware"
+    },
+    {
+      "id": 336,
+      "name": "Orthopedics"
+    },
+    {
+      "id": 277,
+      "name": "Financial Trading"
+    },
+    {
+      "id": 271,
+      "name": "Financial Analysis"
+    },
+    {
+      "id": 644,
+      "name": "Supply Chain Management"
+    },
+    {
+      "id": 527,
+      "name": "Lean Manufacturing"
+    },
+    {
+      "id": 245,
+      "name": "Air Quality and Emissions"
+    },
+    {
+      "id": 326,
+      "name": "Mental and Behavioral Health Specialties"
+    },
+    {
+      "id": 174,
+      "name": "Graphic and Visual Design"
+    },
+    {
+      "id": 106,
+      "name": "Scheduling"
+    },
+    {
+      "id": 273,
+      "name": "Financial Modeling"
+    },
+    {
+      "id": 184,
+      "name": "Childhood Education and Development"
+    },
+    {
+      "id": 181,
+      "name": "Social Studies"
+    },
+    {
+      "id": 253,
+      "name": "Forestry"
+    },
+    {
+      "id": 582,
+      "name": "Property Management"
+    },
+    {
+      "id": 254,
+      "name": "Hazardous Materials Management"
+    },
+    {
+      "id": 142,
+      "name": "Insulation"
+    },
+    {
+      "id": 578,
+      "name": "Personal Attributes"
+    },
+    {
+      "id": 250,
+      "name": "Environmental Engineering and Restoration"
+    },
+    {
+      "id": 640,
+      "name": "Procurement"
+    },
+    {
+      "id": 567,
+      "name": "Writing and Editing"
+    },
+    {
+      "id": 571,
+      "name": "Animal Care"
+    },
+    {
+      "id": 488,
+      "name": "Virtualization and Virtual Machines"
+    },
+    {
+      "id": 259,
+      "name": "Banking Services"
+    },
+    {
+      "id": 495,
+      "name": "Wireless Technologies"
+    },
+    {
+      "id": 108,
+      "name": "Agricultural Research and Agronomy"
+    },
+    {
+      "id": 375,
+      "name": "Backup Software"
+    },
+    {
+      "id": 400,
+      "name": "Database Architecture and Administration"
+    },
+    {
+      "id": 226,
+      "name": "Engineering Software"
+    },
+    {
+      "id": 333,
+      "name": "Nutrition and Diet"
+    },
+    {
+      "id": 286,
+      "name": "Structured Finance"
+    },
+    {
+      "id": 658,
+      "name": "Elements, Compounds, and Materials"
+    },
+    {
+      "id": 538,
+      "name": "Product Inspection"
+    },
+    {
+      "id": 324,
+      "name": "Medical Science and Research"
+    },
+    {
+      "id": 209,
+      "name": "Water Supply, Testing, and Treatment"
+    },
+    {
+      "id": 315,
+      "name": "Hematology"
+    },
+    {
+      "id": 112,
+      "name": "Landscaping and Horticulture"
+    },
+    {
+      "id": 252,
+      "name": "Environmental Regulations"
+    },
+    {
+      "id": 549,
+      "name": "Market Analysis"
+    },
+    {
+      "id": 565,
+      "name": "Photo/Video Production and Technology"
+    },
+    {
+      "id": 415,
+      "name": "Extensible Languages and XML"
+    },
+    {
+      "id": 503,
+      "name": "Labor Compliance"
+    },
+    {
+      "id": 641,
+      "name": "Rail Transportation"
+    },
+    {
+      "id": 649,
+      "name": "Health Care Administration"
+    },
+    {
+      "id": 130,
+      "name": "Architectural Design"
+    },
+    {
+      "id": 179,
+      "name": "Economics"
+    },
+    {
+      "id": 332,
+      "name": "Nuclear Medicine"
+    },
+    {
+      "id": 624,
+      "name": "Physics"
+    },
+    {
+      "id": 188,
+      "name": "Higher Education"
+    },
+    {
+      "id": 153,
+      "name": "Business Analysis"
+    },
+    {
+      "id": 512,
+      "name": "Appliance Repair and Maintenance"
+    },
+    {
+      "id": 191,
+      "name": "Library and Archiving"
+    },
+    {
+      "id": 652,
+      "name": "Hospitality Services"
+    },
+    {
+      "id": 221,
+      "name": "Electromechanical Engineering"
+    },
+    {
+      "id": 200,
+      "name": "Nuclear Energy"
+    },
+    {
+      "id": 480,
+      "name": "System Design and Implementation"
+    },
+    {
+      "id": 506,
+      "name": "Legal Support"
+    },
+    {
+      "id": 287,
+      "name": "Tax"
+    },
+    {
+      "id": 319,
+      "name": "Injury Treatment"
+    },
+    {
+      "id": 387,
+      "name": "Log Management"
+    },
+    {
+      "id": 197,
+      "name": "Energy Efficiency"
+    },
+    {
+      "id": 617,
+      "name": "Chemistry"
+    },
+    {
+      "id": 272,
+      "name": "Financial Management"
+    },
+    {
+      "id": 540,
+      "name": "Textiles"
+    },
+    {
+      "id": 306,
+      "name": "Eye Care"
+    },
+    {
+      "id": 579,
+      "name": "Physical Abilities"
+    },
+    {
+      "id": 213,
+      "name": "Automation Engineering"
+    },
+    {
+      "id": 355,
+      "name": "Compensation and Benefits"
+    },
+    {
+      "id": 618,
+      "name": "Pharmacology and Drug Discovery"
+    },
+    {
+      "id": 456,
+      "name": "Other Programming Languages"
+    },
+    {
+      "id": 572,
+      "name": "Beauty and Body Treatments and Alterations"
+    },
+    {
+      "id": 597,
+      "name": "Business-to-Business (B2B) Sales"
+    },
+    {
+      "id": 229,
+      "name": "Hardware Description Languages (HDL)"
+    },
+    {
+      "id": 114,
+      "name": "Business Intelligence"
+    },
+    {
+      "id": 391,
+      "name": "Content Management Systems"
+    },
+    {
+      "id": 335,
+      "name": "Oncology"
+    },
+    {
+      "id": 316,
+      "name": "Hepatology"
+    },
+    {
+      "id": 225,
+      "name": "Engineering Practices"
+    },
+    {
+      "id": 165,
+      "name": "Client Support"
+    },
+    {
+      "id": 598,
+      "name": "Company, Product, and Service Knowledge"
+    },
+    {
+      "id": 481,
+      "name": "Systems Administration"
+    },
+    {
+      "id": 227,
+      "name": "Engineering, Scientific, and Technical Instruments"
+    },
+    {
+      "id": 302,
+      "name": "Dermatology"
+    },
+    {
+      "id": 284,
+      "name": "Mortgage Lending"
+    },
+    {
+      "id": 164,
+      "name": "Project Management"
+    },
+    {
+      "id": 351,
+      "name": "Food and Beverage"
+    },
+    {
+      "id": 363,
+      "name": "Computer Science"
+    },
+    {
+      "id": 553,
+      "name": "Online Advertising"
+    },
+    {
+      "id": 156,
+      "name": "Contract Management"
+    },
+    {
+      "id": 248,
+      "name": "Ecology"
+    },
+    {
+      "id": 381,
+      "name": "Cloud Computing"
+    },
+    {
+      "id": 581,
+      "name": "Social Skills"
+    },
+    {
+      "id": 338,
+      "name": "Patient Education and Support"
+    },
+    {
+      "id": 636,
+      "name": "Heavy Equipment Operation"
+    },
+    {
+      "id": 505,
+      "name": "Legal Proceedings"
+    },
+    {
+      "id": 300,
+      "name": "Clinical Trials"
+    },
+    {
+      "id": 195,
+      "name": "Clean Energy"
+    },
+    {
+      "id": 542,
+      "name": "Welding, Brazing, and Soldering"
+    },
+    {
+      "id": 348,
+      "name": "Surgery"
+    },
+    {
+      "id": 279,
+      "name": "General Lending"
+    },
+    {
+      "id": 544,
+      "name": "Brand Management"
+    },
+    {
+      "id": 182,
+      "name": "Urban and Regional Planning"
+    },
+    {
+      "id": 347,
+      "name": "Speech Language Pathology"
+    },
+    {
+      "id": 294,
+      "name": "Home Health Care and Assisted Living"
+    },
+    {
+      "id": 269,
+      "name": "Financial Accounting"
+    },
+    {
+      "id": 406,
+      "name": "Distributed Computing"
+    },
+    {
+      "id": 160,
+      "name": "Performance Management"
+    },
+    {
+      "id": 140,
+      "name": "General Construction and Construction Labor"
+    },
+    {
+      "id": 350,
+      "name": "Events and Conferences"
+    },
+    {
+      "id": 314,
+      "name": "Health Information Management and Medical Records"
+    },
+    {
+      "id": 491,
+      "name": "Web Design and Development"
+    },
+    {
+      "id": 281,
+      "name": "Investment Management"
+    },
+    {
+      "id": 239,
+      "name": "Radio Frequency (RF)"
+    },
+    {
+      "id": 513,
+      "name": "Basic Electrical Systems"
+    },
+    {
+      "id": 428,
+      "name": "Integrated Development Environments (IDEs)"
+    },
+    {
+      "id": 396,
+      "name": "Data Storage"
+    },
+    {
+      "id": 437,
+      "name": "Java"
+    },
+    {
+      "id": 289,
+      "name": "Nursing and Patient Care"
+    },
+    {
+      "id": 116,
+      "name": "Data Analysis"
+    },
+    {
+      "id": 426,
+      "name": "Identity and Access Management"
+    },
+    {
+      "id": 185,
+      "name": "Coaching and Athletic Training"
+    },
+    {
+      "id": 638,
+      "name": "Logistics"
+    },
+    {
+      "id": 167,
+      "name": "Cash Register Operation"
+    },
+    {
+      "id": 442,
+      "name": "Microsoft Development Tools"
+    },
+    {
+      "id": 434,
+      "name": "iOS Development"
+    },
+    {
+      "id": 330,
+      "name": "Nephrology"
+    },
+    {
+      "id": 360,
+      "name": "Payroll"
+    },
+    {
+      "id": 639,
+      "name": "Material Handling"
+    },
+    {
+      "id": 328,
+      "name": "Mental Health Therapies"
+    },
+    {
+      "id": 194,
+      "name": "Training Programs"
+    },
+    {
+      "id": 317,
+      "name": "Immunology"
+    },
+    {
+      "id": 251,
+      "name": "Environmental Geology"
+    },
+    {
+      "id": 270,
+      "name": "Financial Advisement"
+    },
+    {
+      "id": 374,
+      "name": "Augmented and Virtual Reality (AR/VR)"
+    },
+    {
+      "id": 331,
+      "name": "Neurology"
+    },
+    {
+      "id": 568,
+      "name": "Dance"
+    },
+    {
+      "id": 101,
+      "name": "Administrative Support and Clerical Tasks"
+    },
+    {
+      "id": 476,
+      "name": "Software Development Tools"
+    },
+    {
+      "id": 113,
+      "name": "Livestock Farming"
+    },
+    {
+      "id": 634,
+      "name": "Ground Freight Transportation"
+    },
+    {
+      "id": 128,
+      "name": "Statistical Software"
+    },
+    {
+      "id": 163,
+      "name": "Product Management"
+    },
+    {
+      "id": 255,
+      "name": "Waste Management"
+    },
+    {
+      "id": 151,
+      "name": "Business Leadership"
+    },
+    {
+      "id": 421,
+      "name": "General Networking"
+    },
+    {
+      "id": 249,
+      "name": "Environment and Resource Management"
+    },
+    {
+      "id": 157,
+      "name": "Internal Controls"
+    },
+    {
+      "id": 591,
+      "name": "Military Technology and Weapons"
+    },
+    {
+      "id": 311,
+      "name": "Genetic Disorders"
+    },
+    {
+      "id": 310,
+      "name": "General Medicine"
+    },
+    {
+      "id": 162,
+      "name": "Process Improvement and Optimization"
+    },
+    {
+      "id": 648,
+      "name": "Student Support and Services"
+    },
+    {
+      "id": 471,
+      "name": "Scripting Languages"
+    },
+    {
+      "id": 256,
+      "name": "Accounting and Finance Software"
+    },
+    {
+      "id": 472,
+      "name": "Search Engines"
+    },
+    {
+      "id": 563,
+      "name": "Media Production"
+    },
+    {
+      "id": 455,
+      "name": "Operating Systems"
+    },
+    {
+      "id": 246,
+      "name": "Climate Change"
+    },
+    {
+      "id": 482,
+      "name": "Technical Support and Services"
+    },
+    {
+      "id": 146,
+      "name": "Roofing"
+    },
+    {
+      "id": 635,
+      "name": "Ground Passenger Transportation"
+    },
+    {
+      "id": 367,
+      "name": "Malware Protection"
+    },
+    {
+      "id": 654,
+      "name": "Engineering, Other"
+    },
+    {
+      "id": 161,
+      "name": "Pricing Analysis"
+    },
+    {
+      "id": 393,
+      "name": "Data Collection"
+    },
+    {
+      "id": 626,
+      "name": "General Science and Research"
+    },
+    {
+      "id": 587,
+      "name": "Fire Prevention, Safety, and Control"
+    },
+    {
+      "id": 145,
+      "name": "Road and Bridge Construction"
+    },
+    {
+      "id": 479,
+      "name": "Databases"
+    },
+    {
+      "id": 290,
+      "name": "Alternative Therapy"
+    },
+    {
+      "id": 124,
+      "name": "Mathematical Software"
+    },
+    {
+      "id": 613,
+      "name": "Biology"
+    },
+    {
+      "id": 621,
+      "name": "Laboratory Research"
+    },
+    {
+      "id": 325,
+      "name": "Medical Support"
+    },
+    {
+      "id": 219,
+      "name": "Drafting and Engineering Design"
+    },
+    {
+      "id": 176,
+      "name": "Industrial Design"
+    },
+    {
+      "id": 261,
+      "name": "Budget Management"
+    },
+    {
+      "id": 605,
+      "name": "Retail Sales"
+    },
+    {
+      "id": 126,
+      "name": "Natural Language Processing (NLP)"
+    },
+    {
+      "id": 143,
+      "name": "Interior Design"
+    },
+    {
+      "id": 187,
+      "name": "Sports and Recreation"
+    },
+    {
+      "id": 305,
+      "name": "Endocrinology"
+    },
+    {
+      "id": 384,
+      "name": "Collaborative Software"
+    },
+    {
+      "id": 473,
+      "name": "Servers"
+    },
+    {
+      "id": 369,
+      "name": "Application Programming Interface (API)"
+    },
+    {
+      "id": 357,
+      "name": "Employee Training"
+    },
+    {
+      "id": 299,
+      "name": "Clinical Informatics"
+    },
+    {
+      "id": 593,
+      "name": "Safety and Surveillance Technology"
+    },
+    {
+      "id": 499,
+      "name": "Language Interpretation, Translation, and Studies"
+    },
+    {
+      "id": 211,
+      "name": "Aerospace Engineering"
+    },
+    {
+      "id": 447,
+      "name": "Mobile Development"
+    },
+    {
+      "id": 411,
+      "name": "Enterprise Information Management"
+    },
+    {
+      "id": 477,
+      "name": "Software Quality Assurance"
+    },
+    {
+      "id": 349,
+      "name": "Urology"
+    },
+    {
+      "id": 642,
+      "name": "Sea and Waterway Transportation"
+    },
+    {
+      "id": 498,
+      "name": "Language Competency"
+    },
+    {
+      "id": 344,
+      "name": "Public Health and Disease Prevention"
+    },
+    {
+      "id": 576,
+      "name": "Communication"
+    },
+    {
+      "id": 389,
+      "name": "Configuration Management"
+    },
+    {
+      "id": 632,
+      "name": "Air Transportation"
+    },
+    {
+      "id": 262,
+      "name": "Cash Management"
+    },
+    {
+      "id": 560,
+      "name": "Content Development and Management"
+    },
+    {
+      "id": 171,
+      "name": "Art and Illustration"
+    },
+    {
+      "id": 296,
+      "name": "Blood Collection"
+    },
+    {
+      "id": 309,
+      "name": "General Medical Tests and Procedures"
+    },
+    {
+      "id": 208,
+      "name": "Water Energy"
+    },
+    {
+      "id": 451,
+      "name": "Network Security"
+    },
+    {
+      "id": 190,
+      "name": "Education Software and Technology"
+    },
+    {
+      "id": 206,
+      "name": "Power Generation"
+    },
+    {
+      "id": 440,
+      "name": "Mainframe Technologies"
+    },
+    {
+      "id": 313,
+      "name": "Health Care Procedure and Regulation"
+    },
+    {
+      "id": 356,
+      "name": "Employee Relations"
+    },
+    {
+      "id": 288,
+      "name": "Underwriting"
+    },
+    {
+      "id": 487,
+      "name": "Video and Web Conferencing"
+    },
+    {
+      "id": 192,
+      "name": "Program Management"
+    },
+    {
+      "id": 361,
+      "name": "Recruitment"
+    },
+    {
+      "id": 292,
+      "name": "Anesthesiology"
+    },
+    {
+      "id": 606,
+      "name": "Sales Analysis"
+    },
+    {
+      "id": 141,
+      "name": "Green Architecture"
+    },
+    {
+      "id": 474,
+      "name": "Software Development"
+    },
+    {
+      "id": 508,
+      "name": "Occupational Health and Safety"
+    },
+    {
+      "id": 260,
+      "name": "Billing and Invoicing"
+    },
+    {
+      "id": 158,
+      "name": "Business Operations"
+    },
+    {
+      "id": 308,
+      "name": "Gastroenterology"
+    },
+    {
+      "id": 241,
+      "name": "Robotics"
+    },
+    {
+      "id": 645,
+      "name": "Transportation Operations"
+    },
+    {
+      "id": 570,
+      "name": "Theatre and Performance Art"
+    },
+    {
+      "id": 243,
+      "name": "Simulation and Simulation Software"
+    },
+    {
+      "id": 240,
+      "name": "Roads and Drainage"
+    },
+    {
+      "id": 148,
+      "name": "Business Communications"
+    },
+    {
+      "id": 134,
+      "name": "Construction Inspection"
+    },
+    {
+      "id": 537,
+      "name": "Product Development"
+    },
+    {
+      "id": 586,
+      "name": "Emergency Services"
+    },
+    {
+      "id": 539,
+      "name": "Production and Assembly"
+    },
+    {
+      "id": 510,
+      "name": "Quality Assurance and Control"
+    },
+    {
+      "id": 470,
+      "name": "Scripting"
+    },
+    {
+      "id": 154,
+      "name": "Business Solutions"
+    },
+    {
+      "id": 623,
+      "name": "Neuroscience"
+    },
+    {
+      "id": 222,
+      "name": "Electronic Hardware"
+    },
+    {
+      "id": 622,
+      "name": "Molecular, Cellular, and Microbiology"
+    },
+    {
+      "id": 438,
+      "name": "JavaScript and jQuery"
+    },
+    {
+      "id": 543,
+      "name": "Advertising"
+    },
+    {
+      "id": 115,
+      "name": "Business Intelligence Software"
+    },
+    {
+      "id": 266,
+      "name": "Cryptocurrency"
+    },
+    {
+      "id": 633,
+      "name": "General Shipping and Receiving"
+    },
+    {
+      "id": 217,
+      "name": "Circuitry"
+    },
+    {
+      "id": 486,
+      "name": "Version Control"
+    },
+    {
+      "id": 392,
+      "name": "Cybersecurity"
+    },
+    {
+      "id": 534,
+      "name": "Metal Fabrication"
+    },
+    {
+      "id": 280,
+      "name": "Insurance"
+    },
+    {
+      "id": 218,
+      "name": "Civil and Architectural Engineering"
+    },
+    {
+      "id": 522,
+      "name": "Vehicle Repair and Maintenance"
+    },
+    {
+      "id": 557,
+      "name": "Social Media"
+    },
+    {
+      "id": 615,
+      "name": "Biotechnology"
+    },
+    {
+      "id": 494,
+      "name": "Web Services"
+    },
+    {
+      "id": 610,
+      "name": "Specialized Sales"
+    },
+    {
+      "id": 507,
+      "name": "Litigation and Civil Justice"
+    },
+    {
+      "id": 105,
+      "name": "Office Management"
+    },
+    {
+      "id": 228,
+      "name": "Geological Engineering"
+    },
+    {
+      "id": 551,
+      "name": "Marketing Software"
+    },
+    {
+      "id": 378,
+      "name": "Blockchain"
+    },
+    {
+      "id": 133,
+      "name": "Construction Estimating"
+    },
+    {
+      "id": 189,
+      "name": "Instructional and Curriculum Design"
+    },
+    {
+      "id": 657,
+      "name": "Telecommunications Equipment and Installation"
+    },
+    {
+      "id": 159,
+      "name": "People Management"
+    },
+    {
+      "id": 435,
+      "name": "IT Automation"
+    },
+    {
+      "id": 484,
+      "name": "Test Automation"
+    },
+    {
+      "id": 237,
+      "name": "Optical Engineering"
+    },
+    {
+      "id": 422,
+      "name": "Geospatial Information and Technology"
+    },
+    {
+      "id": 283,
+      "name": "Mergers and Acquisitions"
+    },
+    {
+      "id": 276,
+      "name": "Risk Management"
+    },
+    {
+      "id": 569,
+      "name": "Music"
+    },
+    {
+      "id": 548,
+      "name": "Industry Specific Marketing"
+    },
+    {
+      "id": 107,
+      "name": "Agricultural Management and Operations"
+    },
+    {
+      "id": 231,
+      "name": "Industrial Engineering"
+    },
+    {
+      "id": 600,
+      "name": "General Sales Practices"
+    },
+    {
+      "id": 193,
+      "name": "Teaching"
+    },
+    {
+      "id": 511,
+      "name": "Regulation and Legal Compliance"
+    },
+    {
+      "id": 408,
+      "name": "Document Management"
+    },
+    {
+      "id": 198,
+      "name": "Energy Management"
+    },
+    {
+      "id": 521,
+      "name": "Power Tools"
+    },
+    {
+      "id": 647,
+      "name": "Special Education"
+    },
+    {
+      "id": 516,
+      "name": "Facility Management and Maintenance"
+    },
+    {
+      "id": 359,
+      "name": "Human Resources Software"
+    },
+    {
+      "id": 318,
+      "name": "Infectious Diseases"
+    },
+    {
+      "id": 345,
+      "name": "Pulmonology"
+    },
+    {
+      "id": 461,
+      "name": "Office and Productivity Equipment and Technology"
+    },
+    {
+      "id": 109,
+      "name": "Aquaculture"
+    },
+    {
+      "id": 502,
+      "name": "Criminal Investigation and Forensics"
+    },
+    {
+      "id": 267,
+      "name": "Electronic Trading"
+    },
+    {
+      "id": 149,
+      "name": "Business Consulting"
+    },
+    {
+      "id": 483,
+      "name": "Telecommunications"
+    },
+    {
+      "id": 519,
+      "name": "HVAC"
+    },
+    {
+      "id": 136,
+      "name": "Construction Painting"
+    },
+    {
+      "id": 602,
+      "name": "Merchandising"
+    },
+    {
+      "id": 509,
+      "name": "Property Law"
+    },
+    {
+      "id": 342,
+      "name": "Physical Therapy"
+    },
+    {
+      "id": 180,
+      "name": "Policy Analysis, Research, and Development"
+    },
+    {
+      "id": 464,
+      "name": "Query Languages"
+    },
+    {
+      "id": 307,
+      "name": "First Aid"
+    },
+    {
+      "id": 238,
+      "name": "Process Engineering"
+    },
+    {
+      "id": 607,
+      "name": "Sales Management"
+    },
+    {
+      "id": 558,
+      "name": "Web Analytics and SEO"
+    }
+  ]
+}

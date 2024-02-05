@@ -3,9 +3,17 @@ import type { ProcedureRouterRecord, inferRouterInputs, inferRouterOutputs } fro
 import type { AnyProcedureBuilderDef } from "@trpc/server/dist/core/internals/procedureBuilder";
 import { z } from "zod";
 import { testRouter } from "./router/test";
+import { skillsRouter } from "./router/skills";
+import { authRouter } from "./router/auth";
+import { uploadRouter } from "./router/upload";
+import { jobsRouter } from "./router/jobs";
 
 export const appRouter = router({
   test: testRouter,
+  skillsRouter: skillsRouter,
+  authRouter: authRouter,
+  uploadRouter: uploadRouter,
+  jobsRouter: jobsRouter,
 });
 
 export type AppRouter = typeof appRouter;

@@ -1,0 +1,55 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1706965147768,
+      "tag": "0000_eager_korath",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1707009513530,
+      "tag": "0001_medical_rocket_racer",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1707012136200,
+      "tag": "0002_familiar_meltdown",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1707012511066,
+      "tag": "0003_normal_squadron_sinister",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1707059837499,
+      "tag": "0004_clever_sebastian_shaw",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1707072674164,
+      "tag": "0005_aberrant_nick_fury",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1707081587454,
+      "tag": "0006_hard_silhouette",
+      "breakpoints": true
+    }
+  ]
+}

@@ -20,9 +20,9 @@ const main = async () => {
     }),
   );
 
-  const trpcEP = env.API_ENDPOINT + "trpc";
-  const restEP = env.API_ENDPOINT + "rest";
-  const swaggerEP = env.API_ENDPOINT + "swagger";
+  const trpcEP = env.API_ENDPOINT + "/trpc";
+  const restEP = env.API_ENDPOINT + "/rest";
+  const swaggerEP = env.API_ENDPOINT + "/swagger";
 
   app.use(cookieParser());
   app.use(

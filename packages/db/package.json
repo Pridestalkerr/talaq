@@ -1,0 +1,45 @@
+{
+  "name": "@acme/db",
+  "version": "0.0.0",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "source": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf .turbo && rm -rf node_modules",
+    "lint": "eslint . --ext .ts,.tsx,.mjs",
+    "lint:fix": "pnpm lint --fix",
+    "format": "prettier --write '**/*.{cjs,mjs,ts,tsx,md,json}' --ignore-unknown --no-error-on-unmatched-pattern",
+    "format:check": "prettier --check '**/*.{cjs,mjs,ts,tsx,md,json}' --ignore-unknown --no-error-on-unmatched-pattern",
+    "migrations:generate": "cross-env NODE_ENV=development dotenv -e ../../.env -- drizzle-kit generate:pg",
+    "migrations:apply": "cross-env NODE_ENV=development dotenv -e ../../.env -- node -r esbuild-register ./scripts/migrate.ts -e .ts",
+    "migrations:drop": "cross-env NODE_ENV=development dotenv -e ../../.env -- drizzle-kit drop",
+    "seed:skills": "cross-env NODE_ENV=development dotenv -e ../../.env -- node -r esbuild-register ./scripts/seed/skills.ts",
+    "seed:user": "cross-env NODE_ENV=development dotenv -e ../../.env -- node -r esbuild-register ./scripts/seed/user.ts"
+  },
+  "devDependencies": {
+    "@acme/eslint-config": "^0.0.0",
+    "@acme/prettier-config": "^0.0.0",
+    "@acme/tsconfig": "^0.0.0",
+    "@types/express": "^4.17.21",
+    "@types/xlsx": "^0.0.36",
+    "drizzle-kit": "^0.20.14",
+    "typescript": "^5.1.6"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@acme/eslint-config/base"
+    ]
+  },
+  "prettier": "@acme/prettier-config/base",
+  "dependencies": {
+    "@acme/env": "^0.0.0",
+    "@faker-js/faker": "^8.4.0",
+    "argon2": "^0.31.1",
+    "drizzle-orm": "^0.29.3",
+    "esbuild-register": "^3.5.0",
+    "postgres": "^3.4.3",
+    "xlsx": "^0.18.5"
+  }
+}

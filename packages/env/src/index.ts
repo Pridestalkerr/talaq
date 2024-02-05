@@ -9,6 +9,7 @@ export const env = createEnv({
     CLIENT_HOST: z.string().url(), // useful for CORS
     API_HOST: z.string().url(),
     API_ENDPOINT: z.string(),
+    NESTA_HOST: z.string().url(),
   },
   clientPrefix: "NEXT_PUBLIC_",
   client: {
@@ -18,7 +19,7 @@ export const env = createEnv({
   },
   runtimeEnv: {
     ...process.env,
-    NEXT_PUBLIC_API_HOST: process.env.API_HOST,
-    NEXT_PUBLIC_API_ENDPOINT: process.env.API_ENDPOINT,
+    NEXT_PUBLIC_API_HOST: process.env.NEXT_PUBLIC_API_HOST,
+    NEXT_PUBLIC_API_ENDPOINT: process.env.NEXT_PUBLIC_API_ENDPOINT,
   },
 });
