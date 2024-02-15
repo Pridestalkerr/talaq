@@ -29,6 +29,7 @@ type MatcherProps = {
 };
 export default function Matcher(props: MatcherProps) {
   const [countrySearch, setCountrySearch] = useState("");
+  const [primarySkillSearch, setPrimarySkillSearch] = useState("");
 
   const [rowsPerPage, setRowsPerPage] = useState(15);
   const [page, setPage] = useState(1);
@@ -36,6 +37,7 @@ export default function Matcher(props: MatcherProps) {
   const matchesQ = api.jobsRouter.match.useQuery(
     {
       country: countrySearch.length > 3 ? countrySearch : undefined,
+      primarySkill: primarySkillSearch.length > 3 ? primarySkillSearch : undefined,
       skills: props.skills.map((skill) => skill.id),
       limit: rowsPerPage,
       offset: (page - 1) * rowsPerPage,
@@ -71,7 +73,7 @@ export default function Matcher(props: MatcherProps) {
         </Button>
       </div>
       <Divider />
-      <div className="flex flex-row">
+      <div className="flex flex-row gap-12">
         <div className="flex flex-grow flex-col">
           <h4 className="text-2xl font-bold">Matches</h4>
           <span className="text-small text-default-400">Total {totalCount} Job Listings</span>
@@ -79,7 +81,17 @@ export default function Matcher(props: MatcherProps) {
         <Input
           variant="underlined"
           isClearable
-          className="max-w-64"
+          className="max-w-56"
+          placeholder="Force Primary Skill match"
+          startContent={<SearchIcon />}
+          value={primarySkillSearch}
+          onClear={() => setPrimarySkillSearch("")}
+          onValueChange={setPrimarySkillSearch}
+        />
+        <Input
+          variant="underlined"
+          isClearable
+          className="max-w-56"
           placeholder="Filter by country"
           startContent={<SearchIcon />}
           value={countrySearch}
@@ -103,7 +115,12 @@ export default function Matcher(props: MatcherProps) {
                           </h4>
                         </Link>
                         <div className="flex flex-row gap-4">
-                          <span className="font-semibold">#{match.meta.primarySkill}</span>
+                          <span className="font-semibold">
+                            <WithHighlight
+                              text={`#${match.meta.primarySkill}`}
+                              highlight={primarySkillSearch}
+                            />
+                          </span>
                         </div>
                       </div>
 
@@ -112,7 +129,9 @@ export default function Matcher(props: MatcherProps) {
                           {match.meta.experience}
                           <span className="font-semibold text-default-500"> of experience</span>
                         </span>
-                        <span className="font-bold">{match.meta.country}</span>
+                        <span className="font-bold">
+                          <WithHighlight text={match.meta.country} highlight={countrySearch} />
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -215,5 +234,25 @@ const MatchedSkills = (props: MatchedSkillsProps) => {
         return <SkillFlag skill={skill} matched={isPresent(skill.id)}></SkillFlag>;
       })}
     </div>
+  );
+};
+
+type WithHighlightProps = {
+  text: string;
+  highlight: string;
+};
+const WithHighlight = (props: WithHighlightProps) => {
+  const parts = props.text.split(new RegExp(`(${props.highlight})`, "gi"));
+  return (
+    <span>
+      {parts.map((part, index) => (
+        <span
+          key={index}
+          className={part.toLowerCase() === props.highlight.toLowerCase() ? "bg-warning-400" : ""}
+        >
+          {part}
+        </span>
+      ))}
+    </span>
   );
 };

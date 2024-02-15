@@ -1,8 +1,8 @@
 "use client";
 import SkillCard from "@/components/SkillCard";
 import { RouterOutputs, api } from "@/lib/trpc/client";
-import { Button, Divider, Input } from "@nextui-org/react";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { Button, Divider, Input, ScrollShadow, Spinner } from "@nextui-org/react";
+import { ChangeEventHandler, useCallback, useEffect, useMemo, useState } from "react";
 import Masonry from "react-masonry-css";
 
 import {
@@ -38,65 +38,91 @@ import {
 } from "lucide-react";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import { z } from "zod";
 
 type Job = RouterOutputs["jobsRouter"]["search"]["records"][number];
 type PageProps = {};
 
+const jdSchema = z.object({
+  autoReqId: z.string(),
+  srNo: z.string(),
+  lobDetails: z.string(),
+  reportingManager: z.string(),
+  requisitionStatus: z.string(),
+  tagManager: z.string().nullable(),
+  primarySkill: z.string(),
+  secondarySkill: z.string().nullable(),
+  infraDomain: z.string().nullable(),
+  customerName: z.string(),
+  band: z.string(),
+  subBand: z.string(),
+  designation: z.string(),
+  experience: z.string().nullable(),
+  jobDescription: z.string(),
+  jobDescriptionPost: z.string().nullable(),
+  country: z.string(),
+  requisitionSource: z.string().nullable(),
+  billingType: z.string(),
+  noOfPositions: z.number().nullable(),
+  positionsBalance: z.number().nullable(),
+  actionablePositions: z.number().nullable(),
+  tp1Interviewer: z.string().nullable(),
+  tp2Interviewer: z.string().nullable(),
+  companyCode: z.string(),
+  initiatorId: z.coerce.string(),
+  sla: z.number().nullable(),
+  agingInDays: z.number().nullable(),
+});
+
+const lookup = {
+  autoReqId: "Auto req ID",
+  srNo: "SR Number",
+  lobDetails: "LoB Details",
+  reportingManager: "Reporting Manager [vReportingManager1]",
+  requisitionStatus: "Reqisition Status",
+  tagManager: "TAG Manager [TAGManager]",
+  primarySkill: "Primary Skill",
+  secondarySkill: "Secondary Skill",
+  infraDomain: "Domain for INFRA",
+  customerName: "Customer Name",
+  band: "Band [iBandId]",
+  subBand: "Sub Band [vSubBandId]",
+  designation: "Designation",
+  experience: "Experience [iExperienceId]",
+  jobDescription: "Job Description",
+  jobDescriptionPost: "Job Description (Posting) [JD_ForPosting]",
+  country: "Country",
+  requisitionSource: "Requisition Source [iRequistionSource]",
+  billingType: "Billing Type [iBillingTypeId]",
+  noOfPositions: "No. of Positions",
+  positionsBalance: "Balance Positions",
+  actionablePositions: "Actionable Positions [Vacancies]",
+  tp1Interviewer: "TP1 Interveiwer",
+  tp2Interviewer: "TP2 Interveiwer",
+  companyCode: "Company Code [vcomp_code]",
+  initiatorId: "Initiator Id",
+  sla: "SLA",
+  agingInDays: "Ageing in Days",
+} as const satisfies {
+  [key in keyof z.infer<typeof jdSchema>]: string;
+};
+
+const metaCols = Object.keys(jdSchema.shape).map((key) => {
+  const k = key as keyof typeof lookup;
+  return {
+    name: lookup[k],
+    get: (job: Job) => job.meta?.[k] ?? "N/A",
+    identifier: k,
+  };
+});
+
 const columns = [
-  { name: "SR Number", get: (job: Job) => job.meta?.srNo ?? "N/A", identifier: "srNo" },
-  { name: "Auto Req ID", get: (job: Job) => job.meta?.autoReqId ?? "N/A", identifier: "autoReqId" },
-  {
-    name: "Reporting Manager",
-    get: (job: Job) => job.meta?.reportingManager ?? "N/A",
-    identifier: "reportingManager",
-  },
-  {
-    name: "Requisition Status",
-    get: (job: Job) => job.meta?.requisitionStatus ?? "N/A",
-    identifier: "requisitionStatus",
-  },
-  {
-    name: "Recruiter",
-    get: (job: Job) => job.meta?.recruiter ?? "N/A",
-    identifier: "recruiter",
-  },
-  {
-    name: "Primary Skill",
-    get: (job: Job) => job.meta?.primarySkill ?? "N/A",
-    identifier: "primarySkill",
-  },
-  {
-    name: "Customer Name",
-    get: (job: Job) => job.meta?.customerName ?? "N/A",
-    identifier: "customerName",
-  },
-  {
-    name: "Designation",
-    get: (job: Job) => job.meta?.designation ?? "N/A",
-    identifier: "designation",
-  },
-  {
-    name: "Experience",
-    get: (job: Job) => job.meta?.experience ?? "N/A",
-    identifier: "experience",
-  },
-  {
-    name: "Job Description",
-    get: (job: Job) => job.meta?.jobDescription ?? "N/A",
-    identifier: "jobDescription",
-  },
-  {
-    name: "Band",
-    get: (job: Job) => job.meta?.band ?? "N/A",
-    identifier: "band",
-  },
-  { name: "Country", get: (job: Job) => job.meta?.country ?? "N/A", identifier: "country" },
+  ...metaCols,
   { name: "", get: (job: Job) => job.id, identifier: "actions" },
 ] as const;
 
 const INITIAL_VISIBLE_COLUMNS = [
   "srNo",
-  "autoReqId",
   "customerName",
   "designation",
   "primarySkill",
@@ -187,7 +213,11 @@ export default function Page(props: PageProps) {
   }, [clearM]);
 
   const headerColumns = useMemo(() => {
-    return columns.filter((column) => Array.from(visibleColumns).includes(column.identifier));
+    return columns.filter((column) =>
+      Array.from(visibleColumns).includes(
+        column.identifier as (typeof INITIAL_VISIBLE_COLUMNS)[number],
+      ),
+    );
   }, [visibleColumns]);
 
   //   const totalResults = useMemo(() => jobsQ.data?.total ?? 0, [jobsQ.data]);
@@ -196,7 +226,7 @@ export default function Page(props: PageProps) {
     return jobsQ.data?.total ? Math.ceil(jobsQ.data?.total / rowsPerPage) : 0;
   }, [jobsQ.data, rowsPerPage]);
 
-  const onRowsPerPageChange = useCallback((e) => {
+  const onRowsPerPageChange: ChangeEventHandler<HTMLSelectElement> = useCallback((e) => {
     // setPagination((prev) => ({ ...prev, pageSize: Number(e.target.value) }));
     setRowsPerPage(Number(e.target.value));
     setPage(1);
@@ -274,13 +304,14 @@ export default function Page(props: PageProps) {
             onValueChange={onSearchChange}
           />
           <div className="flex gap-3">
-            <Dropdown>
+            <Dropdown backdrop="blur">
               <DropdownTrigger className="hidden sm:flex">
                 <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
                   Columns
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
+                className="h-80 overflow-auto"
                 disallowEmptySelection
                 aria-label="Table Columns"
                 closeOnSelect={false}
@@ -289,11 +320,13 @@ export default function Page(props: PageProps) {
                 // @ts-expect-error TODO: fix this, its probably correct
                 onSelectionChange={setVisibleColumns}
               >
-                {columns.map((column) => (
-                  <DropdownItem key={column.identifier} className="capitalize">
-                    {column.name}
-                  </DropdownItem>
-                ))}
+                {columns
+                  .filter((col) => col.identifier !== "actions")
+                  .map((column) => (
+                    <DropdownItem key={column.identifier} className="capitalize">
+                      {column.name}
+                    </DropdownItem>
+                  ))}
               </DropdownMenu>
             </Dropdown>
           </div>
@@ -366,39 +399,53 @@ export default function Page(props: PageProps) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1"></ModalHeader>
-              <ModalBody className="flex flex-col items-center">
-                <Dropzone title="Upload Excel Sheet" file={file} setFile={setFile}></Dropzone>
-              </ModalBody>
-              <ModalFooter>
-                <div className="flex w-[350px] flex-row gap-2">
-                  <div className="row flex flex-grow items-center gap-2 border border-solid">
-                    <div className="bg-muted flex h-full flex-row items-center px-2">
-                      <File className="" />
+              {uploadM.isLoading ? (
+                <>
+                  <ModalHeader className="flex flex-col gap-1"></ModalHeader>
+                  <ModalBody className="flex flex-col items-center">
+                    <p className="font-semibold">Uploading... Please wait.</p>
+                    <p className="text-sm">You can close this tab and check back later.</p>
+                    <Spinner />
+                  </ModalBody>
+                  <ModalFooter></ModalFooter>
+                </>
+              ) : (
+                <>
+                  <ModalHeader className="flex flex-col gap-1"></ModalHeader>
+                  <ModalBody className="flex flex-col items-center">
+                    <Dropzone title="Upload Excel Sheet" file={file} setFile={setFile}></Dropzone>
+                  </ModalBody>
+                  <ModalFooter>
+                    <div className="flex w-[350px] flex-row gap-2">
+                      <div className="row flex flex-grow items-center gap-2 border border-solid">
+                        <div className="bg-muted flex h-full flex-row items-center px-2">
+                          <File className="" />
+                        </div>
+                        <div className="flex flex-grow flex-col">
+                          <p className="text-sm">
+                            {file === null ? "No file selected" : trim(file.name)}
+                          </p>
+                          <p className="text-xs text-primary/80">
+                            {file === null ? "No file selected" : file.size / 1000 + " KB"}
+                          </p>
+                        </div>
+                        <button
+                          className="cursor-pointer px-2 hover:text-primary-500"
+                          disabled={file === null}
+                          onClick={() => {
+                            setFile(null);
+                          }}
+                        >
+                          <Trash />
+                        </button>
+                      </div>
                     </div>
-                    <div className="flex flex-grow flex-col">
-                      <p className="text-sm">
-                        {file === null ? "No file selected" : trim(file.name)}
-                      </p>
-                      <p className="text-xs text-primary/80">
-                        {file === null ? "No file selected" : file.size / 1000 + " KB"}
-                      </p>
-                    </div>
-                    <button
-                      className="cursor-pointer px-2 hover:text-primary-500"
-                      disabled={file === null}
-                      onClick={() => {
-                        setFile(null);
-                      }}
-                    >
-                      <Trash />
-                    </button>
-                  </div>
-                </div>
-                <Button color="primary" onPress={onSubmit}>
-                  Submit
-                </Button>
-              </ModalFooter>
+                    <Button color="primary" onClick={onSubmit} disabled={uploadM.isLoading}>
+                      Submit
+                    </Button>
+                  </ModalFooter>
+                </>
+              )}
             </>
           )}
         </ModalContent>
@@ -444,8 +491,9 @@ export default function Page(props: PageProps) {
             <TableBody emptyContent={"No Jobs found :("} items={jobs}>
               {(item) => (
                 <TableRow key={item.id}>
+                  {/* TODO: type this later or see if Key can be inferred */}
+                  {/* @ts-expect-error */}
                   {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-                  {/* <TableCell>XDDDD</TableCell> */}
                 </TableRow>
               )}
             </TableBody>
