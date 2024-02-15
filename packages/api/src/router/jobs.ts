@@ -27,18 +27,39 @@ export const jobsRouter = router({
     )
     .query(async ({ input, ctx }) => {
       console.log(input);
-      const searchByFields = [jobListings.title, jobListingMeta.srNo, jobListingMeta.primarySkill];
-
-      //   const sq = db.select
+      getTableColumns(jobListingMeta);
+      // const searchByFields = [...Object.values(getTableColumns(jobListingMeta))];
+      const searchByFields = [
+        jobListingMeta.srNo,
+        jobListingMeta.autoReqId,
+        jobListingMeta.lobDetails,
+        jobListingMeta.reportingManager,
+        jobListingMeta.requisitionStatus,
+        jobListingMeta.tagManager,
+        jobListingMeta.primarySkill,
+        jobListingMeta.secondarySkill,
+        jobListingMeta.infraDomain,
+        jobListingMeta.customerName,
+        jobListingMeta.band,
+        jobListingMeta.subBand,
+        jobListingMeta.designation,
+        jobListingMeta.experience,
+        jobListingMeta.jobDescription,
+        jobListingMeta.jobDescriptionPost,
+        jobListingMeta.country,
+        jobListingMeta.requisitionSource,
+        jobListingMeta.billingType,
+        jobListingMeta.tp1Interviewer,
+        jobListingMeta.tp2Interviewer,
+        jobListingMeta.companyCode,
+        jobListingMeta.initiatorId,
+      ];
 
       const searchCondition = input.searchQuery
         ? or(...searchByFields.map((field) => ilike(field, `%${input.searchQuery}%`)))
         : undefined;
 
-      const whereClauses = [
-        ...(searchCondition ? [searchCondition] : []),
-        // ...(input.cursor ? [sql`(${jobListingMeta.srNo}) > (${input.cursor.split("_")[0]!})`] : []),
-      ];
+      const whereClauses = [...(searchCondition ? [searchCondition] : [])];
 
       const records = await db
         .select({
@@ -111,17 +132,32 @@ export const jobsRouter = router({
             json_build_object(
                 'autoReqId', ${jobListingMeta.autoReqId},
                 'srNo', ${jobListingMeta.srNo},
+                'lobDetails', ${jobListingMeta.lobDetails},
                 'reportingManager', ${jobListingMeta.reportingManager},
                 'requisitionStatus', ${jobListingMeta.requisitionStatus},
-                'recruiter', ${jobListingMeta.recruiter},
+                'tagManager', ${jobListingMeta.tagManager},
                 'primarySkill', ${jobListingMeta.primarySkill},
+                'secondarySkill', ${jobListingMeta.secondarySkill},
+                'infraDomain', ${jobListingMeta.infraDomain},
                 'customerName', ${jobListingMeta.customerName},
+                'band', ${jobListingMeta.band},
+                'subBand', ${jobListingMeta.subBand},
                 'designation', ${jobListingMeta.designation},
                 'experience', ${jobListingMeta.experience},
                 'jobDescription', ${jobListingMeta.jobDescription},
                 'jobDescriptionPost', ${jobListingMeta.jobDescriptionPost},
-                'band', ${jobListingMeta.band},
-                'country', ${jobListingMeta.country}
+                'country', ${jobListingMeta.country},
+                'requisitionSource', ${jobListingMeta.requisitionSource},
+                'billingType', ${jobListingMeta.billingType},
+                'noOfPositions', ${jobListingMeta.noOfPositions},
+                'positionsBalance', ${jobListingMeta.positionsBalance},
+                'actionablePositions', ${jobListingMeta.actionablePositions},
+                'tp1Interviewer', ${jobListingMeta.tp1Interviewer},
+                'tp2Interviewer', ${jobListingMeta.tp2Interviewer},
+                'companyCode', ${jobListingMeta.companyCode},
+                'initiatorId', ${jobListingMeta.initiatorId},
+                'sla', ${jobListingMeta.sla},
+                'agingInDays', ${jobListingMeta.agingInDays}
             ) AS meta
         FROM ${jobListings}
         LEFT JOIN ${jobListingMeta} ON ${jobListingMeta.jobListingId} = ${jobListings.id}
@@ -132,6 +168,7 @@ export const jobsRouter = router({
         record: a,
       };
     }),
+  // TODO: cant pass array to trpc-openapi
   match: adminProcedure
     // .meta({
     //   openapi: {
@@ -145,6 +182,7 @@ export const jobsRouter = router({
     .input(
       z.object({
         country: z.string().optional(),
+        primarySkill: z.string().optional(),
         offset: z.number().default(0),
         limit: z.number().default(10),
         skills: z.array(z.string()),
@@ -183,19 +221,34 @@ export const jobsRouter = router({
                 LEFT JOIN ${skillCategories} ON ${skillCategories.id} = categoryId
             ) AS categories,
             json_build_object(
-                'autoReqId', ${jobListingMeta.autoReqId},
-                'srNo', ${jobListingMeta.srNo},
-                'reportingManager', ${jobListingMeta.reportingManager},
-                'requisitionStatus', ${jobListingMeta.requisitionStatus},
-                'recruiter', ${jobListingMeta.recruiter},
-                'primarySkill', ${jobListingMeta.primarySkill},
-                'customerName', ${jobListingMeta.customerName},
-                'designation', ${jobListingMeta.designation},
-                'experience', ${jobListingMeta.experience},
-                'jobDescription', ${jobListingMeta.jobDescription},
-                'jobDescriptionPost', ${jobListingMeta.jobDescriptionPost},
-                'band', ${jobListingMeta.band},
-                'country', ${jobListingMeta.country}
+              'autoReqId', ${jobListingMeta.autoReqId},
+              'srNo', ${jobListingMeta.srNo},
+              'lobDetails', ${jobListingMeta.lobDetails},
+              'reportingManager', ${jobListingMeta.reportingManager},
+              'requisitionStatus', ${jobListingMeta.requisitionStatus},
+              'tagManager', ${jobListingMeta.tagManager},
+              'primarySkill', ${jobListingMeta.primarySkill},
+              'secondarySkill', ${jobListingMeta.secondarySkill},
+              'infraDomain', ${jobListingMeta.infraDomain},
+              'customerName', ${jobListingMeta.customerName},
+              'band', ${jobListingMeta.band},
+              'subBand', ${jobListingMeta.subBand},
+              'designation', ${jobListingMeta.designation},
+              'experience', ${jobListingMeta.experience},
+              'jobDescription', ${jobListingMeta.jobDescription},
+              'jobDescriptionPost', ${jobListingMeta.jobDescriptionPost},
+              'country', ${jobListingMeta.country},
+              'requisitionSource', ${jobListingMeta.requisitionSource},
+              'billingType', ${jobListingMeta.billingType},
+              'noOfPositions', ${jobListingMeta.noOfPositions},
+              'positionsBalance', ${jobListingMeta.positionsBalance},
+              'actionablePositions', ${jobListingMeta.actionablePositions},
+              'tp1Interviewer', ${jobListingMeta.tp1Interviewer},
+              'tp2Interviewer', ${jobListingMeta.tp2Interviewer},
+              'companyCode', ${jobListingMeta.companyCode},
+              'initiatorId', ${jobListingMeta.initiatorId},
+              'sla', ${jobListingMeta.sla},
+              'agingInDays', ${jobListingMeta.agingInDays}
             ) AS meta,
             matchCount::integer AS matchCount,
             (COUNT(*) OVER())::integer AS totalCount
@@ -208,7 +261,10 @@ export const jobsRouter = router({
                 WHERE skillId = ANY(ARRAY${sanitizedTokens}::UUID[])
             ) AS match ON true
             LEFT JOIN ${jobListingMeta} ON ${jobListingMeta.jobListingId} = ${jobListings.id}
-        WHERE ${ilike(jobListingMeta.country, input.country ? `%${input.country}%` : "%")}
+        WHERE ${and(
+          ilike(jobListingMeta.country, input.country ? `%${input.country}%` : "%"),
+          ilike(jobListingMeta.primarySkill, input.primarySkill ? `%${input.primarySkill}%` : "%"),
+        )}
         AND matchCount > 0
         ORDER BY matchCount DESC
         OFFSET ${input.offset ?? 0}

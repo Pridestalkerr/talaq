@@ -50,6 +50,20 @@
       "when": 1707081587454,
       "tag": "0006_hard_silhouette",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1707986221952,
+      "tag": "0007_far_tusk",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1707989378984,
+      "tag": "0008_sticky_masked_marvel",
+      "breakpoints": true
     }
   ]
 }

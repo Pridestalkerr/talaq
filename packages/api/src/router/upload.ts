@@ -1,4 +1,3 @@
-// import { TRPCError } from "@trpc/server";
 import z from "zod";
 import { router } from "../trpc";
 import { jobListingMeta, jobListings, skillCategories, skills } from "@acme/db/schemas";
@@ -13,35 +12,33 @@ import { TRPCError } from "@trpc/server";
 const jdSchema = z.object({
   autoReqId: z.string(),
   srNo: z.string(),
+  lobDetails: z.string(),
   reportingManager: z.string(),
   requisitionStatus: z.string(),
-  recruiter: z.string(),
+  tagManager: z.string().nullable(),
   primarySkill: z.string(),
+  secondarySkill: z.string().nullable(),
+  infraDomain: z.string().nullable(),
   customerName: z.string(),
-  designation: z.string(),
-  experience: z.string(),
-  jobDescription: z.string(),
-  // if this is undefined, then return null
-  jobDescriptionPost: z.string().nullable().optional(),
   band: z.string(),
+  subBand: z.string(),
+  designation: z.string(),
+  experience: z.string().nullable(),
+  jobDescription: z.string(),
+  jobDescriptionPost: z.string().nullable(),
   country: z.string(),
+  requisitionSource: z.string().nullable(),
+  billingType: z.string(),
+  noOfPositions: z.number().nullable(),
+  positionsBalance: z.number().nullable(),
+  actionablePositions: z.number().nullable(),
+  tp1Interviewer: z.string().nullable(),
+  tp2Interviewer: z.string().nullable(),
+  companyCode: z.string(),
+  initiatorId: z.coerce.string(),
+  sla: z.number().nullable(),
+  agingInDays: z.number().nullable(),
 });
-
-type JobPosting = {
-  autoReqId: string;
-  srNo: string;
-  reportingManager: string;
-  requisitionStatus: string;
-  recruiter: string;
-  primarySkill: string;
-  customerName: string;
-  designation: string;
-  experience: string;
-  jobDescription: string;
-  jobDescriptionPost: string;
-  band: string;
-  country: string;
-};
 
 export const uploadRouter = router({
   fromSheet: adminProcedure
@@ -71,15 +68,6 @@ export const uploadRouter = router({
           },
           body: JSON.stringify({ texts: data.map((d) => d.jobDescription) }),
         }).then((res) => res.json());
-
-        // console.log(typeof res.records);
-        // console.log(res.records.length);
-        // console.log(Object.keys(res));
-        // console.log(typeof res.records);
-        // console.log(Object.keys(res.records));
-        // console.log(res.records[`${0}`]);
-        // console.log(Object.keys(res.records[`${0}`]));
-        // console.log(res.records[`${0}`].SKILL);
 
         const skillsLookup = (
           await db
@@ -113,7 +101,7 @@ export const uploadRouter = router({
 
         const toInsert = [] as {
           jobListing: typeof jobListings.$inferInsert;
-          jobListingMeta: typeof jobListingMeta.$inferInsert;
+          jobListingMeta: Omit<typeof jobListingMeta.$inferInsert, "jobListingId">;
         }[];
         for (const [idx, jd] of data.entries()) {
           // TODO: wtf is this?
@@ -160,19 +148,7 @@ export const uploadRouter = router({
               categories: [...new Set(categoryIds)],
             },
             jobListingMeta: {
-              autoReqId: jd.autoReqId,
-              srNo: jd.srNo,
-              reportingManager: jd.reportingManager ?? null,
-              requisitionStatus: jd.requisitionStatus ?? null,
-              recruiter: jd.recruiter ?? null,
-              primarySkill: jd.primarySkill ?? null,
-              customerName: jd.customerName ?? null,
-              designation: jd.designation,
-              experience: jd.experience ?? null,
-              jobDescription: jd.jobDescription,
-              jobDescriptionPost: jd.jobDescriptionPost ?? null,
-              band: jd.band ?? null,
-              country: jd.country ?? null,
+              ...jd,
             },
           });
         }
@@ -276,21 +252,10 @@ const parseJobsFromSheet = (buf: Buffer) => {
 
   const data = XLSX.utils.sheet_to_json<Record<string, unknown>>(worksheet);
   const filtered = data.map((row) => {
-    const mapped = {
-      autoReqId: row[lookup.autoReqId],
-      srNo: row[lookup.srNo],
-      reportingManager: row[lookup.reportingManager],
-      requisitionStatus: row[lookup.requisitionStatus],
-      recruiter: row[lookup.recruiter],
-      primarySkill: row[lookup.primarySkill],
-      customerName: row[lookup.customerName],
-      designation: row[lookup.designation],
-      experience: row[lookup.experience],
-      jobDescription: row[lookup.jobDescription],
-      jobDescriptionPost: row[lookup.jobDescriptionPost],
-      band: row[lookup.band],
-      country: row[lookup.country],
-    };
+    const mapped = {} as Record<string, unknown>;
+    for (const key in lookup) {
+      mapped[key] = row[lookup[key as keyof typeof lookup]] ?? null;
+    }
     return jdSchema.parse(mapped);
   });
 
@@ -300,18 +265,35 @@ const parseJobsFromSheet = (buf: Buffer) => {
 const lookup = {
   autoReqId: "Auto req ID",
   srNo: "SR Number",
+  lobDetails: "LoB Details",
   reportingManager: "Reporting Manager [vReportingManager1]",
   requisitionStatus: "Reqisition Status",
-  recruiter: "Recruiter",
+  tagManager: "TAG Manager [TAGManager]",
   primarySkill: "Primary Skill",
+  secondarySkill: "Secondary Skill",
+  infraDomain: "Domain for INFRA",
   customerName: "Customer Name",
+  band: "Band [iBandId]",
+  subBand: "Sub Band [vSubBandId]",
   designation: "Designation",
   experience: "Experience [iExperienceId]",
   jobDescription: "Job Description",
   jobDescriptionPost: "Job Description (Posting) [JD_ForPosting]",
-  band: "Band [iBandId]",
   country: "Country",
-} as const;
+  requisitionSource: "Requisition Source [iRequistionSource]",
+  billingType: "Billing Type [iBillingTypeId]",
+  noOfPositions: "No. of Positions",
+  positionsBalance: "Balance Positions",
+  actionablePositions: "Actionable Positions [Vacancies]",
+  tp1Interviewer: "TP1 Interveiwer",
+  tp2Interviewer: "TP2 Interveiwer",
+  companyCode: "Company Code [vcomp_code]",
+  initiatorId: "Initiator Id",
+  sla: "SLA",
+  agingInDays: "Ageing in Days",
+} as const satisfies {
+  [key in keyof z.infer<typeof jdSchema>]: string;
+};
 
 function extractVersionParts(input: string): [number, number] {
   const [v1, v2, v3, v4] = input.split(".").map(Number);

@@ -1,0 +1,1 @@
+ALTER TABLE "job_listing_meta" ALTER COLUMN "tag_manager" DROP NOT NULL;
