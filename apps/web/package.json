@@ -43,6 +43,7 @@
     "react-toastify": "^10.0.4",
     "superjson": "2.2.1",
     "tailwind-merge": "^2.2.1",
+    "xlsx": "^0.18.5",
     "zod": "^3.21.4"
   },
   "devDependencies": {
