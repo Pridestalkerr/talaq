@@ -183,6 +183,7 @@ export const jobsRouter = router({
       z.object({
         country: z.string().optional(),
         primarySkill: z.string().optional(),
+        minMatchCount: z.number().default(1),
         offset: z.number().default(0),
         limit: z.number().default(10),
         skills: z.array(z.string()),
@@ -265,7 +266,7 @@ export const jobsRouter = router({
           ilike(jobListingMeta.country, input.country ? `%${input.country}%` : "%"),
           ilike(jobListingMeta.primarySkill, input.primarySkill ? `%${input.primarySkill}%` : "%"),
         )}
-        AND matchCount > 0
+        AND matchCount >= ${input.minMatchCount}
         ORDER BY matchCount DESC
         OFFSET ${input.offset ?? 0}
         LIMIT ${input.limit ?? 15}
@@ -275,6 +276,110 @@ export const jobsRouter = router({
         records,
       };
     }),
+  export: adminProcedure
+    // .meta({
+    //   openapi: {
+    //     method: "GET",
+    //     path: "/jobs/export",
+    //     summary: "Export jobs",
+    //     description: "Export jobs",
+    //     tags: ["jobs"],
+    //   },
+    // })
+    .input(
+      z.object({
+        country: z.string().optional(),
+        primarySkill: z.string().optional(),
+        minMatchCount: z.number().default(1),
+        skills: z.array(z.string()),
+      }),
+    )
+    .mutation(async ({ input, ctx }) => {
+      const sanitizedTokens = sanitizeArray(input.skills);
+
+      type X = Omit<typeof jobListings.$inferSelect, "skills" | "categories"> & {
+        skills: (typeof skills.$inferSelect)[];
+        categories: (typeof skillCategories.$inferSelect)[];
+        meta: typeof jobListingMeta.$inferSelect;
+        matchcount: number;
+        totalcount: number;
+      };
+
+      const records = await db.execute<X>(sql`
+        SELECT
+            ${jobListings.id},
+            ${jobListings.description},
+            (
+                SELECT json_agg(json_build_object(
+                    'id', ${skills.id},
+                    'name', ${skills.name},
+                    'emsiId', ${skills.emsiId}
+                )) FROM unnest(${jobListings.skills}) AS skillId
+                LEFT JOIN ${skills} ON ${skills.id} = skillId
+            ) AS skills,
+            (
+                SELECT json_agg(json_build_object(
+                    'id', ${skillCategories.id},
+                    'name', ${skillCategories.name},
+                    'emsiId', ${skillCategories.emsiId},
+                    'isSubcategory', ${skillCategories.isSubcategory}
+                )) FROM unnest(${jobListings.categories}) AS categoryId
+                LEFT JOIN ${skillCategories} ON ${skillCategories.id} = categoryId
+            ) AS categories,
+            json_build_object(
+              'autoReqId', ${jobListingMeta.autoReqId},
+              'srNo', ${jobListingMeta.srNo},
+              'lobDetails', ${jobListingMeta.lobDetails},
+              'reportingManager', ${jobListingMeta.reportingManager},
+              'requisitionStatus', ${jobListingMeta.requisitionStatus},
+              'tagManager', ${jobListingMeta.tagManager},
+              'primarySkill', ${jobListingMeta.primarySkill},
+              'secondarySkill', ${jobListingMeta.secondarySkill},
+              'infraDomain', ${jobListingMeta.infraDomain},
+              'customerName', ${jobListingMeta.customerName},
+              'band', ${jobListingMeta.band},
+              'subBand', ${jobListingMeta.subBand},
+              'designation', ${jobListingMeta.designation},
+              'experience', ${jobListingMeta.experience},
+              'jobDescription', ${jobListingMeta.jobDescription},
+              'jobDescriptionPost', ${jobListingMeta.jobDescriptionPost},
+              'country', ${jobListingMeta.country},
+              'requisitionSource', ${jobListingMeta.requisitionSource},
+              'billingType', ${jobListingMeta.billingType},
+              'noOfPositions', ${jobListingMeta.noOfPositions},
+              'positionsBalance', ${jobListingMeta.positionsBalance},
+              'actionablePositions', ${jobListingMeta.actionablePositions},
+              'tp1Interviewer', ${jobListingMeta.tp1Interviewer},
+              'tp2Interviewer', ${jobListingMeta.tp2Interviewer},
+              'companyCode', ${jobListingMeta.companyCode},
+              'initiatorId', ${jobListingMeta.initiatorId},
+              'sla', ${jobListingMeta.sla},
+              'agingInDays', ${jobListingMeta.agingInDays}
+            ) AS meta,
+            matchCount::integer AS matchCount,
+            (COUNT(*) OVER())::integer AS totalCount
+        FROM
+            ${jobListings}
+            LEFT JOIN LATERAL (
+                SELECT
+                    COUNT(*) AS matchCount
+                FROM unnest(${jobListings.skills}) AS skillId
+                WHERE skillId = ANY(ARRAY${sanitizedTokens}::UUID[])
+            ) AS match ON true
+            LEFT JOIN ${jobListingMeta} ON ${jobListingMeta.jobListingId} = ${jobListings.id}
+        WHERE ${and(
+          ilike(jobListingMeta.country, input.country ? `%${input.country}%` : "%"),
+          ilike(jobListingMeta.primarySkill, input.primarySkill ? `%${input.primarySkill}%` : "%"),
+        )}
+        AND matchCount >= ${input.minMatchCount}
+        ORDER BY matchCount DESC
+      `);
+
+      return {
+        records,
+      };
+    }),
+
   clear: adminProcedure
     .meta({
       openapi: {
