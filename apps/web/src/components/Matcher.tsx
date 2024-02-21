@@ -12,12 +12,14 @@ import {
   Divider,
   Input,
   Pagination,
+  useDisclosure,
 } from "@nextui-org/react";
-import { Languages, Laptop2, SearchIcon } from "lucide-react";
+import { FileSpreadsheet, FileText, Languages, Laptop2, SearchIcon } from "lucide-react";
 import { useCallback, useMemo, useState } from "react";
 import TruncatedParagraph from "./ReadMoreParagraph";
 import { cn } from "@/lib/utils/cn";
 import Link from "next/link";
+import Exporter from "./Exporter";
 
 type Skill = RouterOutputs["uploadRouter"]["getSkillsFromExcerpt"]["record"]["skills"][number];
 type Category =
@@ -28,8 +30,12 @@ type MatcherProps = {
   reset: () => void;
 };
 export default function Matcher(props: MatcherProps) {
+  // export modal
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
   const [countrySearch, setCountrySearch] = useState("");
   const [primarySkillSearch, setPrimarySkillSearch] = useState("");
+  const [minMatchCount, setMinMatchCount] = useState(1);
 
   const [rowsPerPage, setRowsPerPage] = useState(15);
   const [page, setPage] = useState(1);
@@ -38,6 +44,7 @@ export default function Matcher(props: MatcherProps) {
     {
       country: countrySearch.length > 3 ? countrySearch : undefined,
       primarySkill: primarySkillSearch.length > 3 ? primarySkillSearch : undefined,
+      minMatchCount,
       skills: props.skills.map((skill) => skill.id),
       limit: rowsPerPage,
       offset: (page - 1) * rowsPerPage,
@@ -55,6 +62,15 @@ export default function Matcher(props: MatcherProps) {
 
   return (
     <div className="flex flex-col gap-4 p-8">
+      <Exporter
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        countrySearch={countrySearch}
+        primarySkillSearch={primarySkillSearch}
+        minMatchCount={minMatchCount}
+        cvSkills={props.skills}
+        cvCategories={props.categories}
+      />
       <div className="flex flex-row gap-4">
         <div className="flex flex-grow flex-col gap-2">
           <div className="flex flex-row flex-wrap gap-2">
@@ -68,9 +84,22 @@ export default function Matcher(props: MatcherProps) {
             ))}
           </div>
         </div>
-        <Button color="warning" size="lg" onPress={() => props.reset()}>
-          Reset
-        </Button>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-1">
+            {/* <span className="text-sm font-bold text-default-500">Export</span> */}
+            <div className="flex flex-row gap-2">
+              <Button variant="shadow" size="sm" color="primary" onPress={onOpen}>
+                <FileSpreadsheet />
+              </Button>
+              <Button variant="shadow" size="sm" color="warning" onPress={onOpen}>
+                <FileText />
+              </Button>
+            </div>
+          </div>
+          <Button variant="shadow" color="danger" size="lg" onPress={() => props.reset()}>
+            Reset
+          </Button>
+        </div>
       </div>
       <Divider />
       <div className="flex flex-row gap-12">
@@ -78,6 +107,14 @@ export default function Matcher(props: MatcherProps) {
           <h4 className="text-2xl font-bold">Matches</h4>
           <span className="text-small text-default-400">Total {totalCount} Job Listings</span>
         </div>
+        <Input
+          className="max-w-36"
+          type="number"
+          label="Min skills match"
+          value={String(minMatchCount)}
+          onValueChange={(val) => setMinMatchCount(Number(val))}
+          min={0}
+        />
         <Input
           variant="underlined"
           isClearable
