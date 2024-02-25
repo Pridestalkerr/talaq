@@ -177,6 +177,10 @@ export default function Page(props: PageProps) {
             onClear={() => onClear()}
             onValueChange={onSearchChange}
           />
+          <Button color="primary" variant="flat" onPress={() => {}}>
+            <PlusIcon />
+            Add Employee
+          </Button>
           <div className="flex gap-3">
             <Dropdown backdrop="blur">
               <DropdownTrigger className="hidden sm:flex">
