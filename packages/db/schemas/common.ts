@@ -185,6 +185,11 @@ export const jobListingRelations = relations(jobListings, ({ one }) => {
 
 export const employees = pgTable("employees", {
   id: uuid("id").primaryKey().defaultRandom().notNull(),
+  employeeNumber: varchar("employee_number", {
+    length: 50,
+  })
+    .notNull()
+    .unique(),
   firstName: varchar("first_name", {
     length: 100,
   }).notNull(),
@@ -197,9 +202,6 @@ export const employees = pgTable("employees", {
   contactPhone: varchar("contact_phone", {
     length: 20,
   }),
-  employeeNumber: varchar("employee_number", {
-    length: 50,
-  }).notNull(),
   skills: uuid("skills")
     .references(() => skills.id)
     .array()
@@ -210,7 +212,7 @@ export const employees = pgTable("employees", {
     .default(sql`ARRAY[]::uuid[]`),
   primarySkill: varchar("primary_skill", {
     length: 255,
-  }).notNull(),
+  }),
   secondarySkill: varchar("secondary_skill", {
     length: 255,
   }),

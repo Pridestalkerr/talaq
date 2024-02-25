@@ -1,0 +1,689 @@
+{
+  "id": "1a5c54d1-e799-4caf-af4a-c4ce2ab1a7e6",
+  "prevId": "8fc12a6a-014a-4edf-882d-5fc65d991ac2",
+  "version": "5",
+  "dialect": "pg",
+  "tables": {
+    "auth_key": {
+      "name": "auth_key",
+      "schema": "",
+      "columns": {
+        "provider_user_id": {
+          "name": "provider_user_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "provider": {
+          "name": "provider",
+          "type": "providers",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hashed_password": {
+          "name": "hashed_password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "verified": {
+          "name": "verified",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "auth_key_user_id_users_id_fk": {
+          "name": "auth_key_user_id_users_id_fk",
+          "tableFrom": "auth_key",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "auth_key_provider_provider_user_id_pk": {
+          "name": "auth_key_provider_provider_user_id_pk",
+          "columns": [
+            "provider",
+            "provider_user_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "employees": {
+      "name": "employees",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "employee_number": {
+          "name": "employee_number",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "first_name": {
+          "name": "first_name",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "last_name": {
+          "name": "last_name",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contact_email": {
+          "name": "contact_email",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contact_phone": {
+          "name": "contact_phone",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "skills": {
+          "name": "skills",
+          "type": "uuid[]",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "ARRAY[]::uuid[]"
+        },
+        "categories": {
+          "name": "categories",
+          "type": "uuid[]",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "ARRAY[]::uuid[]"
+        },
+        "primary_skill": {
+          "name": "primary_skill",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "secondary_skill": {
+          "name": "secondary_skill",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "band": {
+          "name": "band",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sub_band": {
+          "name": "sub_band",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "employees_employee_number_unique": {
+          "name": "employees_employee_number_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "employee_number"
+          ]
+        }
+      }
+    },
+    "job_listing_meta": {
+      "name": "job_listing_meta",
+      "schema": "",
+      "columns": {
+        "job_listing_id": {
+          "name": "job_listing_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "auto_req_id": {
+          "name": "auto_req_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sr_no": {
+          "name": "sr_no",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lob_details": {
+          "name": "lob_details",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reporting_manager": {
+          "name": "reporting_manager",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "requisition_status": {
+          "name": "requisition_status",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tag_manager": {
+          "name": "tag_manager",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "primary_skill": {
+          "name": "primary_skill",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "secondary_skill": {
+          "name": "secondary_skill",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "infra_domain": {
+          "name": "infra_domain",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "customer_name": {
+          "name": "customer_name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "band": {
+          "name": "band",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sub_band": {
+          "name": "sub_band",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "designation": {
+          "name": "designation",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "experience": {
+          "name": "experience",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "job_description": {
+          "name": "job_description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "job_description_post": {
+          "name": "job_description_post",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "country": {
+          "name": "country",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "requisition_source": {
+          "name": "requisition_source",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "billing_type": {
+          "name": "billing_type",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "no_of_positions": {
+          "name": "no_of_positions",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "positions_balance": {
+          "name": "positions_balance",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "actionable_positions": {
+          "name": "actionable_positions",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tp1_interviewer": {
+          "name": "tp1_interviewer",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tp2_interviewer": {
+          "name": "tp2_interviewer",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "company_code": {
+          "name": "company_code",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "initiator_id": {
+          "name": "initiator_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sla": {
+          "name": "sla",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "aging_in_days": {
+          "name": "aging_in_days",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "job_listing_meta_job_listing_id_job_listings_id_fk": {
+          "name": "job_listing_meta_job_listing_id_job_listings_id_fk",
+          "tableFrom": "job_listing_meta",
+          "tableTo": "job_listings",
+          "columnsFrom": [
+            "job_listing_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "job_listings": {
+      "name": "job_listings",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "skills": {
+          "name": "skills",
+          "type": "uuid[]",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "ARRAY[]::uuid[]"
+        },
+        "categories": {
+          "name": "categories",
+          "type": "uuid[]",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "ARRAY[]::uuid[]"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "session": {
+      "name": "session",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "varchar(40)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "csrf_token": {
+          "name": "csrf_token",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "active_expires": {
+          "name": "active_expires",
+          "type": "timestamp (3) with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "idle_expires": {
+          "name": "idle_expires",
+          "type": "timestamp (3) with time zone",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "session_user_id_users_id_fk": {
+          "name": "session_user_id_users_id_fk",
+          "tableFrom": "session",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "skill_categories": {
+      "name": "skill_categories",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "emsi_id": {
+          "name": "emsi_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_subcategory": {
+          "name": "is_subcategory",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "skill_categories_id_unique": {
+          "name": "skill_categories_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "id"
+          ]
+        },
+        "skill_categories_emsi_id_unique": {
+          "name": "skill_categories_emsi_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "emsi_id"
+          ]
+        }
+      }
+    },
+    "skills": {
+      "name": "skills",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "emsi_id": {
+          "name": "emsi_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "info_url": {
+          "name": "info_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "description_source": {
+          "name": "description_source",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_language": {
+          "name": "is_language",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_software": {
+          "name": "is_software",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "category_id": {
+          "name": "category_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "subcategory_id": {
+          "name": "subcategory_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "type": {
+          "name": "type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "skills_category_id_skill_categories_id_fk": {
+          "name": "skills_category_id_skill_categories_id_fk",
+          "tableFrom": "skills",
+          "tableTo": "skill_categories",
+          "columnsFrom": [
+            "category_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "skills_subcategory_id_skill_categories_id_fk": {
+          "name": "skills_subcategory_id_skill_categories_id_fk",
+          "tableFrom": "skills",
+          "tableTo": "skill_categories",
+          "columnsFrom": [
+            "subcategory_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "skills_id_unique": {
+          "name": "skills_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "id"
+          ]
+        },
+        "skills_emsi_id_unique": {
+          "name": "skills_emsi_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "emsi_id"
+          ]
+        }
+      }
+    },
+    "users": {
+      "name": "users",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_admin": {
+          "name": "is_admin",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "users_email_unique": {
+          "name": "users_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        }
+      }
+    }
+  },
+  "enums": {
+    "ST_enum": {
+      "name": "ST_enum",
+      "values": {
+        "ST0": "ST0",
+        "ST1": "ST1",
+        "ST2": "ST2",
+        "ST3": "ST3"
+      }
+    },
+    "providers": {
+      "name": "providers",
+      "values": {
+        "EMAIL": "EMAIL"
+      }
+    }
+  },
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

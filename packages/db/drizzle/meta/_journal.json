@@ -71,6 +71,13 @@
       "when": 1708832095509,
       "tag": "0009_aromatic_the_fury",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1708834066742,
+      "tag": "0010_special_master_chief",
+      "breakpoints": true
     }
   ]
 }
