@@ -7,6 +7,7 @@ import { skillsRouter } from "./router/skills";
 import { authRouter } from "./router/auth";
 import { uploadRouter } from "./router/upload";
 import { jobsRouter } from "./router/jobs";
+import { employeesRouter } from "./router/employees";
 
 export const appRouter = router({
   test: testRouter,
@@ -14,6 +15,7 @@ export const appRouter = router({
   authRouter: authRouter,
   uploadRouter: uploadRouter,
   jobsRouter: jobsRouter,
+  employeesRouter: employeesRouter,
 });
 
 export type AppRouter = typeof appRouter;
