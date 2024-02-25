@@ -50,8 +50,8 @@ const columns = [
     identifier: "employeeNumber",
   },
   { name: "First Name", get: (item: Employee) => item.firstName, identifier: "firstName" },
-  { lastName: "Last Name", get: (item: Employee) => item.lastName, identifier: "lastName" },
-  { contactEmail: "Email", get: (item: Employee) => item.contactEmail, identifier: "contactEmail" },
+  { name: "Last Name", get: (item: Employee) => item.lastName, identifier: "lastName" },
+  { name: "Email", get: (item: Employee) => item.contactEmail, identifier: "contactEmail" },
   {
     name: "Phone",
     get: (item: Employee) => item.contactPhone,
