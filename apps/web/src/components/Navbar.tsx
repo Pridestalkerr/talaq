@@ -73,6 +73,11 @@ export default function Component() {
             <span className={className("/app/skills")}>Skills</span>
           </Link>
         </NavbarItem>
+        <NavbarItem isActive={isActive("/app/employees")}>
+          <Link href="/app/employees" aria-current={ariaCurrent("/app/employees")}>
+            <span className={className("/app/employees")}>Employees</span>
+          </Link>
+        </NavbarItem>
       </NavbarContent>
 
       <NavbarContent as="div" justify="end">
