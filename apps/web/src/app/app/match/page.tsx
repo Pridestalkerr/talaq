@@ -48,7 +48,7 @@ export default function Page() {
       />
       {/* <p className="text-small text-default-500">Textarea value: {value}</p> */}
       <Button onPress={onSubmit} color="primary">
-        Let's get this bread!!!
+        Submit
       </Button>
     </div>
   );
