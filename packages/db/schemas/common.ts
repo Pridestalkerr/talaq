@@ -182,3 +182,42 @@ export const jobListingRelations = relations(jobListings, ({ one }) => {
     }),
   };
 });
+
+export const employees = pgTable("employees", {
+  id: uuid("id").primaryKey().defaultRandom().notNull(),
+  firstName: varchar("first_name", {
+    length: 100,
+  }).notNull(),
+  lastName: varchar("last_name", {
+    length: 100,
+  }).notNull(),
+  contactEmail: varchar("contact_email", {
+    length: 255,
+  }).notNull(),
+  contactPhone: varchar("contact_phone", {
+    length: 20,
+  }),
+  employeeNumber: varchar("employee_number", {
+    length: 50,
+  }).notNull(),
+  skills: uuid("skills")
+    .references(() => skills.id)
+    .array()
+    .default(sql`ARRAY[]::uuid[]`),
+  categories: uuid("categories")
+    .references(() => skillCategories.id)
+    .array()
+    .default(sql`ARRAY[]::uuid[]`),
+  primarySkill: varchar("primary_skill", {
+    length: 255,
+  }).notNull(),
+  secondarySkill: varchar("secondary_skill", {
+    length: 255,
+  }),
+  band: varchar("band", {
+    length: 30,
+  }).notNull(),
+  subBand: varchar("sub_band", {
+    length: 30,
+  }).notNull(),
+});
