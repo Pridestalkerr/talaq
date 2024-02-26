@@ -8,3 +8,4 @@ packages:
   - packages/api
   - packages/db
   - packages/auth
+  - packages/shared
