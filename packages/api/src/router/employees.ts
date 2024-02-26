@@ -6,6 +6,7 @@ import { db } from "@acme/db";
 import { adminProcedure, protectedProcedure } from "../procedures";
 import { and, ilike, eq, getTableColumns, or, sql, asc, count, SQL } from "drizzle-orm";
 import { alias } from "drizzle-orm/pg-core";
+import { create as createSchema } from "@acme/shared/src/schema/employees";
 
 export const employeesRouter = router({
   search: adminProcedure
@@ -67,6 +68,34 @@ export const employeesRouter = router({
         records,
         total: total?.count ?? 0,
       };
+    }),
+  create: adminProcedure
+    .meta({
+      openapi: {
+        method: "POST",
+        path: "/employees",
+        summary: "Create employee",
+        description: "Create employee",
+        tags: ["employees"],
+      },
+    })
+    .input(createSchema)
+    .query(async ({ input, ctx }) => {
+      const record = await db.insert(employees).values({
+        employeeNumber: input.employeeNumber,
+        firstName: input.firstName,
+        lastName: input.lastName,
+        contactEmail: input.contactEmail,
+        contactPhone: input.contactPhone,
+        skills: input.skills,
+        categories: input.categories,
+        primarySkill: input.primarySkill,
+        secondarySkill: input.secondarySkill,
+        band: input.band,
+        subBand: input.subBand,
+      });
+
+      return record;
     }),
 });
 

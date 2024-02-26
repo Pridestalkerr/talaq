@@ -16,6 +16,7 @@
     "@acme/auth": "^1.0.0",
     "@acme/db": "^0.0.0",
     "@acme/env": "^0.0.0",
+    "@acme/shared": "^0.0.0",
     "@trpc/client": "^10.45.0",
     "@trpc/server": "^10.45.0",
     "drizzle-orm": "^0.29.3",
