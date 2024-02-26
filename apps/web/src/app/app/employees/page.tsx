@@ -38,6 +38,7 @@ import {
 } from "lucide-react";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import { EmployeeForm } from "@/components/EmployeeForm";
 
 type PageProps = {};
 
@@ -85,6 +86,8 @@ const INITIAL_VISIBLE_COLUMNS = [
 ] as const satisfies (typeof columns)[number]["identifier"][];
 
 export default function Page(props: PageProps) {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
   const [filterValue, setFilterValue] = useState("");
   const [visibleColumns, setVisibleColumns] = useState(new Set(INITIAL_VISIBLE_COLUMNS));
   const [rowsPerPage, setRowsPerPage] = useState(15);
@@ -177,7 +180,7 @@ export default function Page(props: PageProps) {
             onClear={() => onClear()}
             onValueChange={onSearchChange}
           />
-          <Button color="primary" variant="flat" onPress={() => {}}>
+          <Button color="primary" variant="flat" onPress={onOpen}>
             <PlusIcon />
             Add Employee
           </Button>
@@ -210,7 +213,7 @@ export default function Page(props: PageProps) {
           </div>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-small text-default-400">Total {totalCount} Job Listings</span>
+          <span className="text-small text-default-400">Total {totalCount} Employees</span>
           <label className="flex items-center text-small text-default-400">
             Rows per page:
             <select
@@ -271,55 +274,61 @@ export default function Page(props: PageProps) {
   );
 
   return (
-    <div className="flex w-full flex-col gap-4 p-4">
-      {/* <div className="flex flex-row justify-center gap-4">
-        <Button color="primary" onPress={onOpen}>
-          Upload
-        </Button>
-        <Button color="danger" onClick={() => onClearJobs()}>
-          Clear
-        </Button>
-      </div> */}
-      <div className="flex flex-col gap-2">
-        {/* {jobs.map((job) => {
-            return <span>{job.title}</span>;
-          })} */}
-        <Table
-          isCompact
-          removeWrapper
-          aria-label="Example table with custom cells, pagination and sorting"
-          bottomContent={bottomContent}
-          bottomContentPlacement="outside"
-          checkboxesProps={{
-            classNames: {
-              wrapper: "after:bg-foreground after:text-background text-background",
-            },
-          }}
-          classNames={classNames}
-          topContent={topContent}
-          topContentPlacement="outside"
-        >
-          <TableHeader columns={headerColumns}>
-            {(column) => (
-              <TableColumn
-                key={column.identifier}
-                //   align={column.uid === "actions" ? "center" : "start"}
-              >
-                {column.name}
-              </TableColumn>
-            )}
-          </TableHeader>
-          <TableBody emptyContent={"No Employees found :("} items={employees}>
-            {(item) => (
-              <TableRow key={item.id}>
-                {/* TODO: type this later or see if Key can be inferred */}
-                {/* @ts-expect-error */}
-                {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+    <>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1"></ModalHeader>
+              <ModalBody className="flex flex-col items-center">
+                <EmployeeForm />
+              </ModalBody>
+              <ModalFooter>
+                <Button color="primary">Submit</Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      <div className="flex w-full flex-col gap-4 p-4">
+        <div className="flex flex-col gap-2">
+          <Table
+            isCompact
+            removeWrapper
+            aria-label="Example table with custom cells, pagination and sorting"
+            bottomContent={bottomContent}
+            bottomContentPlacement="outside"
+            checkboxesProps={{
+              classNames: {
+                wrapper: "after:bg-foreground after:text-background text-background",
+              },
+            }}
+            classNames={classNames}
+            topContent={topContent}
+            topContentPlacement="outside"
+          >
+            <TableHeader columns={headerColumns}>
+              {(column) => (
+                <TableColumn
+                  key={column.identifier}
+                  //   align={column.uid === "actions" ? "center" : "start"}
+                >
+                  {column.name}
+                </TableColumn>
+              )}
+            </TableHeader>
+            <TableBody emptyContent={"No Employees found :("} items={employees}>
+              {(item) => (
+                <TableRow key={item.id}>
+                  {/* TODO: type this later or see if Key can be inferred */}
+                  {/* @ts-expect-error */}
+                  {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
