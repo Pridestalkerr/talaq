@@ -6,7 +6,7 @@
   "types": "./src/index.mjs",
   "scripts": {
     "build": "tsc",
-    "dev": "nodemon",
+    "dev": "cross-env dotenv -e ../../.env nodemon",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf .turbo && rm -rf node_modules",
     "lint": "eslint . --ext .ts,.tsx,.mjs",
