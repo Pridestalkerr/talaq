@@ -95,13 +95,7 @@ const otherTag = () => {
   );
 };
 
-export const displayTag = ({
-  isLanguage,
-  isSoftware,
-}: {
-  isLanguage: boolean;
-  isSoftware: boolean;
-}) => {
+const displayTag = ({ isLanguage, isSoftware }: { isLanguage: boolean; isSoftware: boolean }) => {
   if (isLanguage) {
     return languageTag();
   } else if (isSoftware) {
